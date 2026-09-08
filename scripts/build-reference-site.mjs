@@ -66,7 +66,26 @@ writeFileSync(new URL('index.html',root), `<!doctype html>
 <title>Youssef &amp; Lara — Engagement</title>
 <meta name="description" content="The engagement invitation for Youssef and Lara on October 1, 2026.">
 <link rel="alternate" hreflang="en" href="./"><link rel="alternate" hreflang="ar" href="./ar/">
-<link rel="icon" href="data:,">
+<link rel="canonical" href="https://youssefg7.github.io/engagement/">
+<meta name="theme-color" content="#eee9e5">
+<!-- The invitation is shared as a pasted link, so it carries its own preview
+     card. og:image must be absolute; update these four URLs together if the
+     site ever moves to its own domain. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Youssef &amp; Lara">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://youssefg7.github.io/engagement/">
+<meta property="og:title" content="Youssef &amp; Lara are getting engaged">
+<meta property="og:description" content="1 October 2026 · St. Anthony Church, Maadi, then Revana Wedding Venue. Kindly reply by 15 September.">
+<meta property="og:image" content="https://youssefg7.github.io/engagement/assets/images/social/og-invitation.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Youssef and Lara written in script inside a pink oval frame, surrounded by watercolour flowers and hummingbirds">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="./assets/images/social/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Youssef &amp; Lara">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/reference-source.css">
 <link rel="stylesheet" href="assets/css/portrait-site.css">
