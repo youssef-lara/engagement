@@ -112,9 +112,4 @@ body { overflow-x: clip; }
 html:not(.motion) .envelope-scene .open-envelope-group,
 html:not(.motion) .envelope-scene .exact-orange-title { opacity: 1 !important; }
 html:not(.motion) .bird-wrap { opacity: 1; }
-/* The tall edge florals are painted as backgrounds. Fitting them to their
-   natural proportions left the artwork 0.4% off the source scale, which drifted
-   up to 2.4px down the strip and repeated a sliver of the top at the bottom
-   edge. Filling the box reproduces the source exactly; the elongation the
-   natural fit was avoiding is smaller than a pixel. */
-.frame-border { background-size: 100% 100%; background-repeat: no-repeat; }
+.frame-border { background-size: 100% auto; background-repeat: repeat-y; }
