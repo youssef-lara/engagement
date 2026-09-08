@@ -54,6 +54,26 @@ body { overflow-x: clip; }
 .el { will-change: auto; }
 .hotspot { min-height: 44px; }
 .hotspot:focus-visible { outline: 3px solid #be435d; outline-offset: 4px; }
+
+/* Each venue line is raster lettering from the source, so the only way to open
+   a location was Google's own button inside the embed. An anchor sits over the
+   line instead: it opens the guest's maps app, survives a blocked or slow
+   embed, works without JavaScript, and is reachable by keyboard. The dotted
+   rule is the only visible change, and ::before widens the touch area to about
+   44px without moving it. */
+.map-link {
+  position: absolute;
+  z-index: 900;
+  display: block;
+  border-bottom: 1px dotted rgba(127, 38, 56, 0.5);
+  -webkit-tap-highlight-color: rgba(190, 67, 93, 0.14);
+}
+.map-link::before {
+  content: '';
+  position: absolute;
+  inset: -16px -10px;
+}
+.map-link:focus-visible { outline: 3px solid #be435d; outline-offset: 5px; }
 .visually-hidden {
   position: absolute !important; width: 1px !important; height: 1px !important;
   padding: 0 !important; margin: -1px !important; overflow: hidden !important;
