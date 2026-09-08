@@ -4,6 +4,9 @@
    uses the original Canva aspect ratio with the restored reference visuals. */
 :root { --phone-ratio: 502.1245 / 767.625; }
 .site { width: min(100%, 430px); box-shadow: none; }
+/* Still clips the artwork to the page edge, but without turning the strip into
+   a scroll container, which would own the pages' scroll snapping. */
+.site { overflow: clip; }
 .phone-page {
   position: relative;
   width: 100%;
@@ -11,6 +14,22 @@
   overflow: hidden;
   background: #fff;
   container-type: inline-size;
+}
+
+/* Page-to-page snapping. Each page settles with its own top at the top of the
+   viewport. `proximity` only assists a scroll that already ends near a page
+   edge, so a deliberate stop mid-page, the taller reply page, and short
+   landscape viewports all stay freely scrollable. */
+html { scroll-snap-type: y proximity; }
+.phone-page { scroll-snap-align: start; }
+/* The source hides body overflow on one axis, which silently makes the body a
+   scroll container and detaches the pages from the page scroller. `clip` keeps
+   the same horizontal clipping without creating that scroll container. Browsers
+   without `clip` keep the source rule and simply do not snap. */
+body { overflow-x: clip; }
+/* Snapping moves the page without the reader asking, so honour reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
 }
 .scene {
   position: absolute;
@@ -93,4 +112,9 @@
 html:not(.motion) .envelope-scene .open-envelope-group,
 html:not(.motion) .envelope-scene .exact-orange-title { opacity: 1 !important; }
 html:not(.motion) .bird-wrap { opacity: 1; }
-.frame-border { background-size: 100% auto; background-repeat: repeat-y; }
+/* The tall edge florals are painted as backgrounds. Fitting them to their
+   natural proportions left the artwork 0.4% off the source scale, which drifted
+   up to 2.4px down the strip and repeated a sliver of the top at the bottom
+   edge. Filling the box reproduces the source exactly; the elongation the
+   natural fit was avoiding is smaller than a pixel. */
+.frame-border { background-size: 100% 100%; background-repeat: no-repeat; }

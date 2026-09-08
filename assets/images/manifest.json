@@ -6357,8 +6357,8 @@
       "byteLength": 19686,
       "payloadSha256": "80d43926fb6608cb305f646b049ce38f7d70ee390c17e814fc9e512298c8eeaf",
       "intrinsic": {
-        "width": 136,
-        "height": 133
+        "width": 544,
+        "height": 532
       },
       "rendered": {
         "leftPercent": 58.476932,
@@ -6369,7 +6369,7 @@
       "contentClassification": "meaningful-artwork",
       "label": "couple-photo-stairs",
       "assetId": "asset-80d43926fb66",
-      "assetPath": "assets/images/invitation/couple-photo-stairs-80d43926.png",
+      "assetPath": "assets/images/invitation/couple-photo-proposal.png",
       "canonicalElementId": "invitation-image-011",
       "isRepeatedPayload": false,
       "classification": "meaningful-artwork"
@@ -6453,8 +6453,8 @@
       "byteLength": 26972,
       "payloadSha256": "b3bde13987fa69b8c9220c7087289da2be68892a80938b3332b0495d1618013c",
       "intrinsic": {
-        "width": 302,
-        "height": 342
+        "width": 906,
+        "height": 1026
       },
       "rendered": {
         "leftPercent": 34.87163,
@@ -6465,7 +6465,7 @@
       "contentClassification": "decorative-artwork",
       "label": "invitation-card-pink-fill",
       "assetId": "asset-b3bde13987fa",
-      "assetPath": "assets/images/invitation/invitation-card-pink-fill-b3bde139.png",
+      "assetPath": "assets/images/invitation/couple-polaroid-proposal.png",
       "canonicalElementId": "invitation-image-014",
       "isRepeatedPayload": false,
       "classification": "decorative-artwork"

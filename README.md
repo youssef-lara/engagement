@@ -56,6 +56,12 @@ with the original floral corners. This page grows to fit the form; the other
 eight pages retain the source aspect ratio.
 The Arabic route continues to use its existing styles and scripts.
 
+The invitation collage bakes each layer's tilt into its PNG, so swapping a
+photograph means rebuilding that file at the same canvas size and tilted
+quadrilateral. `python3 scripts/fit-invitation-photos.py` does that for the two
+couple photographs from the originals kept beside them, leaving the collage's
+positions, overlaps and CSS untouched.
+
 `node scripts/build-reference-site.mjs` rebuilds `index.html`,
 `assets/css/reference-source.css`, and `assets/css/reference-frame.css` from the
 preserved Canva HTML and extracted asset manifest. Edit layout in
