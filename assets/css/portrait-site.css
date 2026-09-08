@@ -1,8 +1,8 @@
 @import url('./reference-frame.css');
 
 /* One portrait edition on phones, tablets, and desktop. The central design
-   retains Canva's proportions; the framing fills a 390 × 844 iPhone page. */
-:root { --phone-ratio: 390 / 844; }
+   uses the original Canva aspect ratio with the restored reference visuals. */
+:root { --phone-ratio: 502.1245 / 767.625; }
 .site { width: min(100%, 430px); box-shadow: none; }
 .phone-page {
   position: relative;
@@ -19,8 +19,8 @@
   width: 100%;
   aspect-ratio: 502.1245 / 767.625;
   overflow: visible;
-  /* Half the difference between the phone and source artboard heights. */
-  --frame-extension: 31.765cqw;
+  /* The page and source artboard now share the same height. */
+  --frame-extension: 0px;
 }
 /* Anchor water to the page edge, keeping boats on the same water plane. */
 .scene-0 [data-root="10"], .scene-0 [data-root="20"] { margin-top: var(--frame-extension); }
