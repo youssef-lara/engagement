@@ -690,7 +690,7 @@
 }
 
 /* v17 — crisp invitation lettering: live browser text, no rasterized text */
-500&family=Great+Vibes&display=swap');
+/* 500&family=Great+Vibes&display=swap'); */
 
 .live-invitation-copy{
   position:absolute;
@@ -770,7 +770,7 @@
 }
 
 /* v19 — use Ballet for the invitation script text + restore orange title */
-500&display=swap');
+/* 500&display=swap'); */
 
 .card-names{
   font-family:'Ballet','Brush Script MT','Segoe Script',cursive !important;
@@ -978,7 +978,7 @@
 }
 .card-and-v25{
   font-family:'Ballet',cursive;
-  font-size:2.6487cqw;
+  font-size:3.25cqw;
   line-height:1;
 }
 .card-lara{
@@ -995,7 +995,7 @@
 /* Supporting copy is independently placed too — no inherited name/date spacing. */
 .card-request-v25{
   font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:1.48cqw;
+  font-size:2.08cqw;
   font-weight:500;
   line-height:1.12;
   letter-spacing:.055em;
@@ -1004,7 +1004,7 @@
 .card-church-v25,
 .card-venue-v25{
   font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:1.15cqw;
+  font-size:1.95cqw;
   font-weight:500;
   line-height:1;
   letter-spacing:.025em;
