@@ -77,7 +77,7 @@ body { overflow-x: clip; }
 .rsvp-paper {
   position: relative; z-index: 1; width: 84%; margin: 0 auto;
   border: 14px solid transparent;
-  border-image: url('../images/rsvp/rsvp-lace-frame-8f2dca09.png') 46 round;
+  border-image: url('../images/optimized/rsvp-lace-frame-8f2dca09.webp') 46 round;
   padding: 24px 16px; background: #e8e6e3 padding-box;
   color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
 }

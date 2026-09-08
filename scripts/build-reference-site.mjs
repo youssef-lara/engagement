@@ -2,7 +2,8 @@
  * The immutable source and extracted asset manifest are the build inputs.
  * Run: node scripts/build-reference-site.mjs
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { basename } from 'node:path';
 const source = readFileSync(new URL('../lara_youssef_engagement_v25.html', import.meta.url), 'utf8');
 const manifest = JSON.parse(readFileSync(new URL('../assets/images/manifest.json', import.meta.url)));
 const root = new URL('../', import.meta.url);
@@ -19,12 +20,21 @@ const descriptions = [
   '<h2>RSVP</h2><p>Let us know you’re coming! We’re so excited to celebrate this special moment with you! Kindly submit your RSVP by September 15th, 2026. With love, Youssef and Lara.</p>',
 ];
 const form = readFileSync(new URL('assets/templates/rsvp-form.html',root),'utf8');
+/** Prefer the WebP delivery copy built by scripts/optimize-assets.mjs. The
+ * originals stay in the repository and remain the source of truth; animated
+ * GIFs have no delivery copy and are served as they are. */
+const delivery = assetPath => {
+  if (assetPath.endsWith('.gif')) return assetPath;
+  const copy = `assets/images/optimized/${basename(assetPath).replace(/\.(?:png|svg)$/, '.webp')}`;
+  return existsSync(new URL(copy, root)) ? copy : assetPath;
+};
+
 let imageIndex = 0;
 const scenes = [...source.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(([html], sceneIndex) => {
   html = html.replace(/<img\b[^>]*>/g, tag => {
     const asset = manifest.elements[imageIndex++];
     if (asset.sceneIndex !== sceneIndex) throw new Error('Source/manifest order mismatch');
-    tag = tag.replace(/src="[^"]*"/, `src="${asset.assetPath}"`)
+    tag = tag.replace(/src="[^"]*"/, `src="${delivery(asset.assetPath)}"`)
       .replace(/loading="[^"]*"/, `loading="${sceneIndex === 0 ? 'eager' : 'lazy'}"`);
     // The accessible transcript supplies words that Canva exported as glyph images.
     if (asset.contentClassification === 'text-fragment') tag = tag.replace(/alt="[^"]*"/, 'alt="" aria-hidden="true"');
@@ -32,7 +42,7 @@ const scenes = [...source.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(([html
       // Tile tall edge art at its natural proportions rather than elongating flowers.
       tag = tag.replace('<img', '<span').replace(/\s(?:src|alt|loading|decoding)="[^"]*"/g, '')
         .replace('class="', 'aria-hidden="true" class="frame-border ')
-        .replace('style="', `style="background-image:url('${asset.assetPath}');`)
+        .replace('style="', `style="background-image:url('${delivery(asset.assetPath)}');`)
         .replace(/\/?>$/, '></span>');
     }
     return tag;
@@ -41,7 +51,7 @@ const scenes = [...source.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(([html
   html = html.replace(/loading="eager"(?=[^>]*src="https:)/g, 'loading="lazy"');
   if (sceneIndex === 8) {
     const flowers = manifest.elements.filter(asset => asset.sceneIndex === 8 && ['559','560','561','562'].includes(asset.dataRoot))
-      .map(asset => `<img class="rsvp-floral rsvp-floral--${asset.dataRoot}" src="${asset.assetPath}" alt="" aria-hidden="true" loading="lazy" decoding="async">`).join('');
+      .map(asset => `<img class="rsvp-floral rsvp-floral--${asset.dataRoot}" src="${delivery(asset.assetPath)}" alt="" aria-hidden="true" loading="lazy" decoding="async">`).join('');
     return `<div class="phone-page rsvp-page" id="rsvp">
 <section class="scene rsvp-scene" data-scene="rsvp" aria-labelledby="reply-title">
 ${flowers}
