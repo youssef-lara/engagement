@@ -51,7 +51,9 @@ The custom bilingual form posts to a small Cloudflare Worker at `worker/`. The W
 
 The English route uses the original 502.1245:767.625 Canva page ratio at every viewport size,
 centered and capped at 430 CSS pixels on larger screens. Each page retains the
-original v25 lettering, artwork, and floral framing. The RSVP artwork opens the existing form in an accessible dialog.
+original v25 lettering, artwork, and floral framing. The final RSVP page displays the existing form directly in a lace-paper card,
+with the original floral corners. This page grows to fit the form; the other
+eight pages retain the source aspect ratio.
 The Arabic route continues to use its existing styles and scripts.
 
 `node scripts/build-reference-site.mjs` rebuilds `index.html`,

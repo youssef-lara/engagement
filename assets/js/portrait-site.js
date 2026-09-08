@@ -30,9 +30,4 @@
   tick();
   setInterval(tick, 1000);
 
-  const dialog = document.querySelector('.rsvp-dialog');
-  const trigger = document.querySelector('[data-open-rsvp]');
-  trigger.addEventListener('click', () => dialog.showModal());
-  document.querySelector('[data-close-rsvp]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => trigger.focus({ preventScroll: true }));
 })();

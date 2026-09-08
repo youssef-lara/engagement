@@ -18,6 +18,7 @@ const descriptions = [
   '<h2>Dress Code</h2><p>Formal dresses for ladies. Formal suits for men.</p>',
   '<h2>RSVP</h2><p>Let us know you’re coming! We’re so excited to celebrate this special moment with you! Kindly submit your RSVP by September 15th, 2026. With love, Youssef and Lara.</p>',
 ];
+const form = readFileSync(new URL('assets/templates/rsvp-form.html',root),'utf8');
 let imageIndex = 0;
 const scenes = [...source.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(([html], sceneIndex) => {
   html = html.replace(/<img\b[^>]*>/g, tag => {
@@ -38,14 +39,25 @@ const scenes = [...source.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(([html
   });
   html = html.replace(/<section /, `<section data-scene="${slugs[sceneIndex]}" `);
   html = html.replace(/loading="eager"(?=[^>]*src="https:)/g, 'loading="lazy"');
-  if (sceneIndex === 8) html = html.replace(/<a\b[^>]*class="hotspot rsvp-link"[^>]*><\/a>/,
-    '<button class="hotspot rsvp-link" type="button" data-open-rsvp aria-label="Open RSVP form" aria-haspopup="dialog" style="left:38.641014%;top:75.992236%;width:18.193496%;height:5.077740%"></button>');
+  if (sceneIndex === 8) {
+    const flowers = manifest.elements.filter(asset => asset.sceneIndex === 8 && ['559','560','561','562'].includes(asset.dataRoot))
+      .map(asset => `<img class="rsvp-floral rsvp-floral--${asset.dataRoot}" src="${asset.assetPath}" alt="" aria-hidden="true" loading="lazy" decoding="async">`).join('');
+    return `<div class="phone-page rsvp-page" id="rsvp">
+<section class="scene rsvp-scene" data-scene="rsvp" aria-labelledby="reply-title">
+${flowers}
+<div class="rsvp-paper">
+<h2 id="reply-title">RSVP</h2>
+<p class="reply-note">Let us know you’re coming!</p>
+<p class="reply-deadline">Kindly reply by <time datetime="2026-09-15">15.09.2026</time>.</p>
+${form}
+</div>
+</section></div>`;
+  }
   return `<div class="phone-page" id="${slugs[sceneIndex]}">${html.replace('</section>', `<div class="visually-hidden">${descriptions[sceneIndex]}</div></section>`)}</div>`;
 });
 if (imageIndex !== manifest.elements.length) throw new Error('Unmapped source images');
 const css = source.match(/<style[^>]*>([\s\S]*?)<\/style>/)[1].replace(/@import\s+url\([^;]+;/g, '');
 writeFileSync(new URL('assets/css/reference-source.css', root), '/* Generated from the preserved v25 source. Edit portrait-site.css for layout. */\n'+css);
-const form = readFileSync(new URL('assets/templates/rsvp-form.html',root),'utf8');
 writeFileSync(new URL('index.html',root), `<!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -65,12 +77,6 @@ writeFileSync(new URL('index.html',root), `<!doctype html>
 <body data-language="en">
 <a class="skip-link" href="#main-content">Skip to invitation</a>
 <main class="site" id="main-content">${scenes.join('\n')}</main>
-<dialog class="rsvp-dialog" aria-labelledby="reply-title">
-<button class="dialog-close" type="button" data-close-rsvp aria-label="Close RSVP form">×</button>
-<h2 id="reply-title">RSVP</h2>
-<p class="reply-note">Let us know you’re coming!</p>
-${form}
-</dialog>
 <noscript><p class="no-script-reply">To reply, <a href="https://forms.gle/daqf2ug4TypLtKwH8">open the RSVP form</a>.</p></noscript>
 </body></html>\n`);
 
