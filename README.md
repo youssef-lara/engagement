@@ -46,3 +46,18 @@ access, but the website itself needs no build system or font CDN.
 ## RSVP service
 
 The custom bilingual form posts to a small Cloudflare Worker at `worker/`. The Worker authenticates to Google with a private service-account secret and appends responses to the private `RSVP Responses` tab in Google Sheets. See `RSVP_OPERATIONS.md` for deployment and maintenance instructions.
+
+## English portrait edition
+
+The English route uses one 390:844 iPhone page ratio at every viewport size,
+centered and capped at 430 CSS pixels on larger screens. Each page retains the
+original v25 lettering and central composition, with floral edges extended into
+the taller frame. The RSVP artwork opens the existing form in an accessible dialog.
+The Arabic route continues to use its existing styles and scripts.
+
+`node scripts/build-reference-site.mjs` rebuilds `index.html`,
+`assets/css/reference-source.css`, and `assets/css/reference-frame.css` from the
+preserved Canva HTML and extracted asset manifest. Edit layout in
+`assets/css/portrait-site.css`, interactions in `assets/js/portrait-site.js`, and
+the reply form markup in `assets/templates/rsvp-form.html`. The RSVP transport
+remains in `assets/js/rsvp.js`.

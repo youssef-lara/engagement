@@ -1,0 +1,1019 @@
+/* Generated from the preserved v25 source. Edit portrait-site.css for layout. */
+
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:#eee9e5;overflow-x:hidden}body{margin:0;overflow-x:hidden;touch-action:pan-y;overscroll-behavior-x:none;background:#eee9e5;font-family:Arial,Helvetica,sans-serif}.site{width:min(100vw,502.1245px);margin:auto;background:#fff;overflow:hidden;box-shadow:0 0 34px rgba(0,0,0,.12)}.scene{position:relative;width:100%;aspect-ratio:502.1245/767.625;overflow:hidden;background:#fff;container-type:inline-size}.el{position:absolute;display:block;object-fit:fill;z-index:var(--z);pointer-events:none;user-select:none;-webkit-user-drag:none;transform-origin:center;will-change:transform,opacity}.motion .scene:not(.play) .el{opacity:0}.motion .scene.play .el{animation-duration:.72s;animation-timing-function:cubic-bezier(.2,.78,.2,1);animation-delay:var(--delay);animation-fill-mode:both}.scene.play .fade{animation-name:fade}.scene.play .fade-up{animation-name:fadeUp}.scene.play .from-left{animation-name:fromLeft}.scene.play .from-right{animation-name:fromRight}.scene.play .from-top{animation-name:fromTop}.scene.play .from-bottom{animation-name:fromBottom}.scene.play .scale-in{animation-name:scaleIn}.scene.play .pop{animation-name:pop}.scene.play .collage-left{animation-name:collageLeft}.scene.play .collage-right{animation-name:collageRight}.scene.play .hero-rise{animation-name:heroRise}.scene.play .hero-pop{animation-name:heroPop}
+@keyframes fade{from{opacity:0}to{opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes fromLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}@keyframes fromRight{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}@keyframes fromTop{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:none}}@keyframes fromBottom{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}@keyframes scaleIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}@keyframes pop{0%{opacity:0;transform:scale(.72)}70%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}@keyframes collageLeft{from{opacity:0;transform:translate(-28px,16px) rotate(-4deg) scale(.95)}to{opacity:1;transform:none}}@keyframes collageRight{from{opacity:0;transform:translate(28px,-12px) rotate(4deg) scale(.95)}to{opacity:1;transform:none}}@keyframes heroRise{from{opacity:0;transform:translateY(46px) scale(.96)}to{opacity:1;transform:none}}@keyframes heroPop{0%{opacity:0;transform:translateY(32px) scale(.6)}75%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:1;transform:none}}
+/* boat is the actual independently extracted Canva sailboat */.scene.play .boat{opacity:1;animation:boatLeft 5.4s cubic-bezier(.28,.05,.16,1) var(--delay) forwards!important}@keyframes boatLeft{0%{opacity:0;transform:translate(45%,20%) rotate(2deg)}10%{opacity:1}28%{opacity:1;transform:translate(-12%,-1%) rotate(.2deg)}62%{opacity:1;transform:translate(-112%,1%) rotate(-.5deg)}100%{opacity:1;transform:translate(-205%,0) rotate(0)}}
+.gif-bird{position:absolute;z-index:990;object-fit:contain;pointer-events:none;opacity:0;animation:birdAppear .4s ease var(--bird-delay) forwards,birdFloat 2.7s ease-in-out calc(var(--bird-delay) + .4s) infinite alternate;transform-origin:center;filter:drop-shadow(0 1px 1px rgba(0,0,0,.05))}.gif-bird.flip{scale:-1 1}@keyframes birdAppear{from{opacity:0;translate:0 9px}to{opacity:1;translate:0 0}}@keyframes birdFloat{from{translate:0 -2px;rotate:-1deg}to{translate:var(--drift) 5px;rotate:1.5deg}}
+.countdown{position:absolute;z-index:1000;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;padding:.5cqw 0}.count-grid{width:100%;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:start;column-gap:1.3cqw}.unit{text-align:center;min-width:0}.num,.colon{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-weight:900;font-size:min(8.7vw,43px);line-height:.92;letter-spacing:.01em}.lab{font-size:min(1.75vw,8.5px);font-weight:800;line-height:1;margin-top:1.7cqw}.colon{font-size:min(7.5vw,37px)}.hotspot{position:absolute;z-index:1200;background:transparent;border:0;padding:0;cursor:pointer;border-radius:8px}.hotspot:focus-visible{outline:3px solid rgba(255,93,45,.6);outline-offset:2px}.scrollhint{position:fixed;right:14px;bottom:14px;z-index:2000;border:0;border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.88);box-shadow:0 5px 18px rgba(0,0,0,.13);font:600 12px Arial;color:#444;backdrop-filter:blur(10px);transition:.3s}.scrollhint.hide{opacity:0;pointer-events:none}@media(max-width:502.1245px){.site{box-shadow:none}.scrollhint{display:none}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.motion .scene .el{opacity:1!important;animation:none!important;transform:none!important}.gif-bird{animation:none!important;opacity:1!important}}
+
+.bird-wrap{
+  position:absolute;z-index:990;aspect-ratio:1/1;pointer-events:none;
+  opacity:0;transform-origin:center center;will-change:transform,opacity;
+}
+.correct-bird{
+  width:100%;height:100%;display:block;object-fit:contain;
+  transform:scaleX(var(--flip));transform-origin:center;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.035));
+}
+.scene.play .bird-wrap{
+  animation:
+    birdEnter .58s cubic-bezier(.2,.82,.2,1) var(--bird-delay) forwards,
+    birdHover 3.2s ease-in-out calc(var(--bird-delay) + .58s) infinite alternate;
+}
+@keyframes birdEnter{
+  0%{opacity:0;transform:translateY(12px) scale(.88)}
+  70%{opacity:1;transform:translateY(-1px) scale(1.025)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes birdHover{
+  from{transform:translate3d(0,-2px,0) rotate(-.6deg)}
+  to{transform:translate3d(var(--bx),var(--by),0) rotate(.8deg)}
+}
+.rsvp-link,.form-card-link{cursor:pointer}
+@media(prefers-reduced-motion:reduce){
+  .bird-wrap{animation:none!important;opacity:1!important;transform:none!important}
+}
+
+/* --- Exact second-envelope sequence rebuilt from the supplied reference recording --- */
+.envelope-scene .env-floral{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+}
+.envelope-scene .env-floral .el{
+  opacity:1!important; transform:none!important; animation:none!important;
+}
+.envelope-scene .closed-envelope-ref,
+.envelope-scene .wax-seal-ref{
+  position:absolute; height:auto; display:block; pointer-events:none;
+  object-fit:contain; will-change:opacity,transform;
+}
+.envelope-scene .closed-envelope-ref{
+  z-index:30; opacity:0;
+}
+.envelope-scene .wax-seal-ref{
+  z-index:31; opacity:0;
+}
+.envelope-scene .open-envelope-group{
+  position:absolute; inset:0; pointer-events:none; transform-origin:50% 67%;
+}
+.envelope-scene .open-envelope-group .el{
+  animation:none!important;
+}
+.envelope-scene .env-back{z-index:20;opacity:0}
+.envelope-scene .env-photos{z-index:23;opacity:0}
+.envelope-scene .env-flowers{z-index:27;opacity:0}
+.envelope-scene .env-card{z-index:25;opacity:0}
+
+/* Initial closed envelope: it appears immediately and stays almost still, just like the recording. */
+.envelope-scene.play .closed-envelope-ref{
+  animation:
+    envClosedIn .24s ease-out 0s forwards,
+    envClosedOut .36s ease-in 2.12s forwards;
+}
+/* Separate seal remains after the envelope fades, then disappears as the open envelope arrives. */
+.envelope-scene.play .wax-seal-ref{
+  animation:
+    sealHoldIn .18s ease-out .04s forwards,
+    sealHoldOut .30s ease-in 2.47s forwards;
+}
+
+/* Open envelope arrives after the closed one dissolves. */
+.envelope-scene.play .env-back{
+  animation: envOpenBack .28s cubic-bezier(.2,.8,.2,1) 2.56s forwards;
+}
+.envelope-scene.play .env-photos{
+  animation: envPhotosRise .38s cubic-bezier(.18,.86,.22,1) 2.60s forwards;
+}
+.envelope-scene.play .env-flowers{
+  animation: envFlowersRise .38s cubic-bezier(.18,.86,.22,1) 2.62s forwards;
+}
+.envelope-scene.play .env-card{
+  animation: envCardSwing .46s cubic-bezier(.16,.88,.24,1) 2.64s forwards;
+}
+
+@keyframes envClosedIn{
+  from{opacity:0;transform:translateY(5px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes envClosedOut{
+  0%{opacity:1;filter:none}
+  100%{opacity:0;filter:brightness(1.08)}
+}
+@keyframes sealHoldIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes sealHoldOut{
+  from{opacity:1;transform:scale(1)}
+  to{opacity:0;transform:scale(.96)}
+}
+@keyframes envOpenBack{
+  from{opacity:0;transform:translateY(11px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes envPhotosRise{
+  from{opacity:0;transform:translateY(25px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes envFlowersRise{
+  from{opacity:0;transform:translateY(22px) scale(.95)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes envCardSwing{
+  0%{opacity:0;transform:translate(-25px,22px) rotate(-10deg) scale(.94)}
+  55%{opacity:.82}
+  100%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .envelope-scene .closed-envelope-ref{display:none!important}
+  .envelope-scene .wax-seal-ref{display:none!important}
+  .envelope-scene .env-back,
+  .envelope-scene .env-photos,
+  .envelope-scene .env-flowers,
+  .envelope-scene .env-card{opacity:1!important;transform:none!important;animation:none!important}
+}
+
+
+/* --- v7: actual high-resolution envelope elements from the uploaded Canva SVG --- */
+.envelope-scene .actual-envelope-wrap{
+  position:absolute;
+  left:6%;
+  top:33.5%;
+  width:88%;
+  aspect-ratio:4345/3096;
+  z-index:30;
+  transform:rotate(-7.5deg);
+  transform-origin:50% 50%;
+  pointer-events:none;
+}
+.envelope-scene .actual-envelope-paper,
+.envelope-scene .actual-envelope-text,
+.envelope-scene .actual-envelope-seal{
+  position:absolute;
+  display:block;
+  height:auto;
+  pointer-events:none;
+  will-change:opacity,transform;
+}
+.envelope-scene .actual-envelope-paper{
+  inset:0;
+  width:100%;
+  opacity:0;
+}
+.envelope-scene .actual-envelope-text{
+  left:31.9%;
+  top:17.2%;
+  width:38.5%;
+  z-index:32;
+  opacity:0;
+}
+.envelope-scene .actual-envelope-seal{
+  left:39.6%;
+  top:46.2%;
+  width:22.3%;
+  z-index:33;
+  opacity:0;
+}
+
+/* Paper + vector lettering arrive together, then dissolve while the seal stays briefly. */
+.envelope-scene.play .actual-envelope-paper,
+.envelope-scene.play .actual-envelope-text{
+  animation:
+    actualEnvIn .26s ease-out 0s forwards,
+    actualEnvOut .34s ease-in 2.12s forwards;
+}
+.envelope-scene.play .actual-envelope-seal{
+  animation:
+    actualSealIn .22s cubic-bezier(.2,.82,.2,1) .06s forwards,
+    actualSealOut .30s ease-in 2.47s forwards;
+}
+
+@keyframes actualEnvIn{
+  from{opacity:0;transform:translateY(5px) scale(.988)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes actualEnvOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+@keyframes actualSealIn{
+  from{opacity:0;transform:scale(.90)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes actualSealOut{
+  from{opacity:1;transform:scale(1)}
+  to{opacity:0;transform:scale(.96)}
+}
+
+/* Disable the old screenshot-crop assets if any stale markup survives. */
+.envelope-scene .closed-envelope-ref,
+.envelope-scene .wax-seal-ref{
+  display:none!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .envelope-scene .actual-envelope-paper,
+  .envelope-scene .actual-envelope-text,
+  .envelope-scene .actual-envelope-seal{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+
+/* --- v8 envelope refinements: clear lettering, continuous opening, quicker timing --- */
+
+/* Keep "You're Invited!" clear of the wax seal. */
+.envelope-scene .actual-envelope-text{
+  left:31.75%;
+  top:8.5%;
+  width:36.5%;
+  z-index:34;
+}
+.envelope-scene .actual-envelope-seal{
+  left:39.6%;
+  top:52%;
+  width:22.3%;
+  z-index:33;
+}
+
+/*
+  Instead of the closed envelope disappearing in one place and the open envelope
+  appearing somewhere else, the real closed envelope now physically travels,
+  straightens and scales into the exact anchor of the open-envelope composition.
+*/
+.envelope-scene.play .actual-envelope-wrap{
+  animation: envAnchorShiftV8 .40s cubic-bezier(.28,.04,.18,1) 1.38s forwards;
+}
+
+/* Faster closed-envelope phase. */
+.envelope-scene.play .actual-envelope-paper,
+.envelope-scene.play .actual-envelope-text{
+  animation:
+    actualEnvInV8 .18s ease-out 0s forwards,
+    actualEnvOutV8 .28s ease-in 1.53s forwards;
+}
+.envelope-scene.play .actual-envelope-seal{
+  animation:
+    actualSealInV8 .18s cubic-bezier(.2,.82,.2,1) .03s forwards,
+    actualSealOutV8 .26s ease-in 1.82s forwards;
+}
+
+/* The envelope base itself no longer jumps/flies in. */
+.envelope-scene.play .env-back{
+  opacity:1!important;
+  animation:none!important;
+}
+
+/* Make the open back actually unfold into place. */
+.envelope-scene.play .env-back .el[data-root="27"]{
+  animation: envFlapOpenV8 .34s cubic-bezier(.18,.82,.22,1) 1.56s both!important;
+  transform-origin:50% 88%!important;
+}
+.envelope-scene.play .env-back .el[data-root="39"]{
+  animation: envFrontInV8 .24s ease-out 1.67s both!important;
+}
+
+/* Contents follow almost immediately after the flap opens. */
+.envelope-scene.play .env-photos{
+  animation: envPhotosRiseV8 .30s cubic-bezier(.18,.86,.22,1) 1.72s forwards!important;
+}
+.envelope-scene.play .env-flowers{
+  animation: envFlowersRiseV8 .30s cubic-bezier(.18,.86,.22,1) 1.76s forwards!important;
+}
+.envelope-scene.play .env-card{
+  animation: envCardSwingV8 .40s cubic-bezier(.16,.88,.24,1) 1.80s forwards!important;
+}
+
+@keyframes envAnchorShiftV8{
+  from{
+    transform:translate(0,0) rotate(-7.5deg) scale(1);
+  }
+  to{
+    /* right + down + smaller: mathematically bridges the closed envelope to the
+       open-envelope anchor instead of teleporting between the two layouts */
+    transform:translate(4.0%,43.0%) rotate(0deg) scale(.786);
+  }
+}
+@keyframes actualEnvInV8{
+  from{opacity:0;transform:translateY(4px) scale(.99)}
+  to{opacity:1;transform:none}
+}
+@keyframes actualEnvOutV8{
+  from{opacity:1}
+  to{opacity:0}
+}
+@keyframes actualSealInV8{
+  from{opacity:0;transform:scale(.92)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes actualSealOutV8{
+  from{opacity:1;transform:scale(1)}
+  to{opacity:0;transform:scale(.95)}
+}
+@keyframes envFlapOpenV8{
+  0%{opacity:0;transform:translateY(11%) scaleY(.62)}
+  35%{opacity:.72}
+  100%{opacity:1;transform:translateY(0) scaleY(1)}
+}
+@keyframes envFrontInV8{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes envPhotosRiseV8{
+  from{opacity:0;transform:translateY(19px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+@keyframes envFlowersRiseV8{
+  from{opacity:0;transform:translateY(17px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+@keyframes envCardSwingV8{
+  0%{opacity:0;transform:translate(-21px,18px) rotate(-8deg) scale(.95)}
+  60%{opacity:.9}
+  100%{opacity:1;transform:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .envelope-scene .actual-envelope-wrap{animation:none!important;transform:rotate(-7.5deg)!important}
+}
+
+
+/* --- v9 timing polish: ~20% faster than the old version, not rushed --- */
+.envelope-scene.play .actual-envelope-wrap{
+  animation: envAnchorShiftV8 .45s cubic-bezier(.28,.04,.18,1) 1.65s forwards;
+}
+.envelope-scene.play .actual-envelope-paper,
+.envelope-scene.play .actual-envelope-text{
+  animation:
+    actualEnvInV8 .18s ease-out 0s forwards,
+    actualEnvOutV8 .32s ease-in 1.82s forwards;
+}
+.envelope-scene.play .actual-envelope-seal{
+  animation:
+    actualSealInV8 .18s cubic-bezier(.2,.82,.2,1) .03s forwards,
+    actualSealOutV8 .30s ease-in 2.12s forwards;
+}
+.envelope-scene.play .env-back .el[data-root="27"]{
+  animation: envFlapOpenV8 .36s cubic-bezier(.18,.82,.22,1) 1.90s both!important;
+}
+.envelope-scene.play .env-back .el[data-root="39"]{
+  animation: envFrontInV8 .26s ease-out 2.04s both!important;
+}
+.envelope-scene.play .env-photos{
+  animation: envPhotosRiseV8 .35s cubic-bezier(.18,.86,.22,1) 2.05s forwards!important;
+}
+.envelope-scene.play .env-flowers{
+  animation: envFlowersRiseV8 .35s cubic-bezier(.18,.86,.22,1) 2.09s forwards!important;
+}
+.envelope-scene.play .env-card{
+  animation: envCardSwingV8 .44s cubic-bezier(.16,.88,.24,1) 2.12s forwards!important;
+}
+
+
+/* --- v10: envelope accuracy + embedded maps --- */
+.embedded-map{
+  position:absolute;
+  z-index:950;
+  border:0;
+  border-radius:2px;
+  background:#eee;
+  display:block;
+}
+
+/* Clear text/seal spacing */
+.envelope-scene .actual-envelope-text{
+  left:31.7%;
+  top:7.4%;
+  width:36.0%;
+  z-index:34;
+}
+.envelope-scene .actual-envelope-seal{
+  left:39.7%;
+  top:53.2%;
+  width:21.8%;
+  z-index:35;
+}
+
+/* The closed envelope must NOT slide to a new anchor before opening. */
+.envelope-scene.play .actual-envelope-wrap{
+  animation:none!important;
+  transform:rotate(-7.5deg)!important;
+}
+
+/* Closed state is slightly quicker, like the reference recording. */
+.envelope-scene.play .actual-envelope-paper,
+.envelope-scene.play .actual-envelope-text{
+  animation:
+    actualEnvInV10 .16s ease-out 0s forwards,
+    actualEnvOutV10 .24s ease-in 1.58s forwards!important;
+}
+.envelope-scene.play .actual-envelope-seal{
+  animation:
+    actualSealInV10 .16s cubic-bezier(.2,.82,.2,1) .02s forwards,
+    actualSealOutV10 .22s ease-in 1.78s forwards!important;
+}
+
+/*
+ Open composition shares one visual anchor. The initial transform places the
+ open envelope under the closed envelope, then it unfolds downward naturally.
+*/
+.envelope-scene .open-envelope-group{
+  transform-origin:53% 60%!important;
+}
+.envelope-scene.play .env-back{
+  opacity:1!important;
+  animation:openEnvelopeAnchorV10 .34s cubic-bezier(.18,.82,.22,1) 1.66s both!important;
+}
+.envelope-scene.play .env-back .el[data-root="27"]{
+  animation:envBackRevealV10 .32s cubic-bezier(.18,.82,.22,1) 1.66s both!important;
+  transform-origin:50% 72%!important;
+}
+.envelope-scene.play .env-back .el[data-root="39"]{
+  animation:envFrontRevealV10 .27s ease-out 1.73s both!important;
+}
+
+/* Photos, flowers and invitation emerge as one continuous action. */
+.envelope-scene.play .env-photos{
+  animation:envPhotosV10 .34s cubic-bezier(.16,.9,.22,1) 1.80s forwards!important;
+}
+.envelope-scene.play .env-flowers{
+  animation:envFlowersV10 .35s cubic-bezier(.16,.9,.22,1) 1.83s forwards!important;
+}
+.envelope-scene.play .env-card{
+  animation:envCardV10 .40s cubic-bezier(.16,.9,.22,1) 1.86s forwards!important;
+}
+
+@keyframes actualEnvInV10{
+  from{opacity:0;transform:translateY(3px) scale(.992)}
+  to{opacity:1;transform:none}
+}
+@keyframes actualEnvOutV10{
+  from{opacity:1}
+  to{opacity:0}
+}
+@keyframes actualSealInV10{
+  from{opacity:0;transform:scale(.93)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes actualSealOutV10{
+  from{opacity:1;transform:scale(1)}
+  to{opacity:0;transform:scale(.97)}
+}
+@keyframes openEnvelopeAnchorV10{
+  0%{opacity:0;transform:translate(0,-10%) scale(.91)}
+  100%{opacity:1;transform:translate(0,-1.5%) scale(.96)}
+}
+@keyframes envBackRevealV10{
+  0%{opacity:0;transform:translateY(8%) scaleY(.72)}
+  45%{opacity:.8}
+  100%{opacity:1;transform:none}
+}
+@keyframes envFrontRevealV10{
+  from{opacity:0;transform:translateY(-3%)}
+  to{opacity:1;transform:none}
+}
+@keyframes envPhotosV10{
+  from{opacity:0;transform:translateY(18px) scale(.965)}
+  to{opacity:1;transform:translateY(-1.5%) scale(.96)}
+}
+@keyframes envFlowersV10{
+  from{opacity:0;transform:translateY(15px) scale(.965)}
+  to{opacity:1;transform:translateY(-1.5%) scale(.96)}
+}
+@keyframes envCardV10{
+  0%{opacity:0;transform:translate(-18px,16px) rotate(-8deg) scale(.94)}
+  70%{opacity:1}
+  100%{opacity:1;transform:translateY(-1.5%) scale(.96)}
+}
+
+
+/* ===== FINAL MAP + ENVELOPE + GIF FIX ===== */
+.embedded-map{
+  position:absolute!important;
+  z-index:1100!important;
+  border:0!important;
+  border-radius:3px!important;
+  display:block!important;
+  background:#eee!important;
+  pointer-events:auto!important;
+}
+.map-open{
+  position:absolute;
+  z-index:1250;
+  width:7%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font:700 16px/1 Arial,sans-serif;
+  color:#333;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 2px 8px rgba(0,0,0,.22);
+  -webkit-tap-highlight-color:transparent;
+}
+.envelope-scene .actual-envelope-wrap{
+  left:10%!important;
+  top:31%!important;
+  width:80%!important;
+  transform:rotate(-7.5deg)!important;
+  transform-origin:50% 58%!important;
+}
+.envelope-scene .actual-envelope-text{
+  left:30.8%!important;
+  top:5.2%!important;
+  width:36.8%!important;
+  z-index:36!important;
+}
+.envelope-scene .actual-envelope-seal{
+  left:39.7%!important;
+  top:53.5%!important;
+  width:20.8%!important;
+  z-index:35!important;
+}
+.envelope-scene.play .actual-envelope-wrap{
+  animation:none!important;
+}
+.envelope-scene.play .actual-envelope-paper{
+  animation:
+    finalEnvIn2 .15s ease-out 0s forwards,
+    finalPaperOpen2 .34s cubic-bezier(.28,.05,.18,1) 1.42s forwards!important;
+}
+.envelope-scene.play .actual-envelope-text{
+  animation:
+    finalEnvIn2 .15s ease-out 0s forwards,
+    finalTextOpen2 .26s ease-in 1.42s forwards!important;
+}
+.envelope-scene.play .actual-envelope-seal{
+  animation:
+    finalSealIn2 .15s cubic-bezier(.2,.82,.2,1) .02s forwards,
+    finalSealOut2 .24s ease-in 1.76s forwards!important;
+}
+.envelope-scene.play .env-back{
+  opacity:1!important;
+  animation:finalOpenAnchor2 .38s cubic-bezier(.18,.84,.22,1) 1.60s both!important;
+}
+.envelope-scene.play .env-back .el[data-root="27"]{
+  animation:finalFlapOpen2 .34s cubic-bezier(.16,.88,.22,1) 1.62s both!important;
+  transform-origin:50% 78%!important;
+}
+.envelope-scene.play .env-back .el[data-root="39"]{
+  animation:finalFrontIn2 .24s ease-out 1.73s both!important;
+}
+.envelope-scene.play .env-photos{
+  animation:finalPhotosRise2 .33s cubic-bezier(.16,.90,.22,1) 1.77s forwards!important;
+}
+.envelope-scene.play .env-flowers{
+  animation:finalPhotosRise2 .33s cubic-bezier(.16,.90,.22,1) 1.80s forwards!important;
+}
+.envelope-scene.play .env-card{
+  animation:finalCardRise2 .39s cubic-bezier(.16,.90,.22,1) 1.83s forwards!important;
+}
+@keyframes finalEnvIn2{
+  from{opacity:0;transform:translateY(3px) scale(.992)}
+  to{opacity:1;transform:none}
+}
+@keyframes finalPaperOpen2{
+  0%{opacity:1;transform:translateY(0) scale(1)}
+  45%{opacity:.9;transform:translateY(4%) scale(.985)}
+  100%{opacity:0;transform:translateY(14%) scale(.91)}
+}
+@keyframes finalTextOpen2{
+  from{opacity:1;transform:none}
+  to{opacity:0;transform:translateY(7%) scale(.95)}
+}
+@keyframes finalSealIn2{
+  from{opacity:0;transform:scale(.94)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes finalSealOut2{
+  from{opacity:1;transform:scale(1)}
+  to{opacity:0;transform:scale(.97)}
+}
+@keyframes finalOpenAnchor2{
+  0%{opacity:0;transform:translateY(-4%) scale(.92)}
+  100%{opacity:1;transform:none}
+}
+@keyframes finalFlapOpen2{
+  0%{opacity:0;transform:translateY(-7%) scaleY(.70)}
+  45%{opacity:.84}
+  100%{opacity:1;transform:none}
+}
+@keyframes finalFrontIn2{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes finalPhotosRise2{
+  from{opacity:0;transform:translateY(21px) scale(.965)}
+  to{opacity:1;transform:none}
+}
+@keyframes finalCardRise2{
+  0%{opacity:0;transform:translate(-20px,18px) rotate(-8deg) scale(.945)}
+  65%{opacity:.92}
+  100%{opacity:1;transform:none}
+}
+.correct-bird{
+  image-rendering:auto!important;
+}
+
+
+/* v11 map fit + bird orientation fix */
+.embedded-map{
+  border:0!important;
+  border-radius:0!important;
+  overflow:hidden!important;
+  z-index:1100!important;
+}
+.map-open{display:none!important;}
+.correct-bird{
+  transform:scaleX(var(--flip))!important;
+  transform-origin:center center!important;
+}
+
+.ceremony-time-correction{
+  position:absolute;
+  left:29.8%;
+  top:69.9%;
+  width:46.5%;
+  height:4.5%;
+  z-index:1300;
+  display:flex;
+  align-items:center;
+  background:#fff;
+  color:#111;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-weight:400;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  padding-left:.4%;
+  pointer-events:none;
+}
+
+
+
+
+/* v15: explicit bird flipping so every bird clearly faces the center oval */
+.scene.play .bird-wrap{
+  animation:
+    birdEnter .58s cubic-bezier(.2,.82,.2,1) var(--bird-delay) forwards,
+    birdOrbitV15 var(--dur,3.7s) ease-in-out calc(var(--bird-delay) + .58s) infinite!important;
+}
+@keyframes birdOrbitV15{
+  0%{transform:translate3d(0,-1px,0) scale(1)}
+  22%{transform:translate3d(calc(var(--ox,0px) * .45), calc(var(--oy,0px) * .45),0) scale(1.015)}
+  50%{transform:translate3d(var(--ox,0px), var(--oy,0px),0) scale(1.03)}
+  78%{transform:translate3d(var(--cx,0px), var(--cy,0px),0) scale(.995)}
+  100%{transform:translate3d(0,-1px,0) scale(1)}
+}
+
+/* LEFT-side birds: mirror to face RIGHT toward the oval */
+.bird-1 .correct-bird{transform:scaleX(-1) rotate(14deg)!important}
+.bird-4 .correct-bird{transform:scaleX(-1) rotate(8deg)!important}
+.bird-5 .correct-bird{transform:scaleX(-1) rotate(18deg)!important}
+
+/* RIGHT-side birds: keep normal direction, rotated toward LEFT / inward */
+.bird-2 .correct-bird{transform:scaleX(1) rotate(-18deg)!important}
+.bird-3 .correct-bird{transform:scaleX(1) rotate(-10deg)!important}
+.bird-6 .correct-bird{transform:scaleX(1) rotate(-16deg)!important}
+
+@media(prefers-reduced-motion:reduce){
+  .bird-1 .correct-bird{transform:scaleX(-1) rotate(14deg)!important}
+  .bird-4 .correct-bird{transform:scaleX(-1) rotate(8deg)!important}
+  .bird-5 .correct-bird{transform:scaleX(-1) rotate(18deg)!important}
+  .bird-2 .correct-bird{transform:scaleX(1) rotate(-18deg)!important}
+  .bird-3 .correct-bird{transform:scaleX(1) rotate(-10deg)!important}
+  .bird-6 .correct-bird{transform:scaleX(1) rotate(-16deg)!important}
+}
+
+/* v17 — crisp invitation lettering: live browser text, no rasterized text */
+500&family=Great+Vibes&display=swap');
+
+.live-invitation-copy{
+  position:absolute;
+  z-index:70;
+  left:23.65%;
+  top:34.35%;
+  width:33.75%;
+  height:34.75%;
+  transform:rotate(-19.8deg);
+  transform-origin:50% 50%;
+  color:#fff;
+  text-align:center;
+  pointer-events:none;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+  backface-visibility:hidden;
+}
+.live-invitation-copy *{
+  box-sizing:border-box;
+}
+.card-names{
+  position:absolute;
+  left:-12%;
+  top:7%;
+  width:124%;
+  font-family:'Great Vibes','Brush Script MT','Segoe Script',cursive;
+  font-size:clamp(16px,5.0cqw,29px);
+  line-height:.88;
+  font-weight:400;
+  white-space:nowrap;
+  text-shadow:0 0 .25px rgba(255,255,255,.8);
+}
+.card-and{
+  font-size:.52em;
+  line-height:1.15;
+  margin:.05em 0 .06em;
+}
+.card-request{
+  position:absolute;
+  left:-3%;
+  top:56%;
+  width:106%;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(6px,1.50cqw,9px);
+  font-weight:500;
+  line-height:1.18;
+  letter-spacing:.08em;
+}
+.card-date{
+  position:absolute;
+  left:-4%;
+  top:69%;
+  width:108%;
+  font-family:'Great Vibes','Brush Script MT','Segoe Script',cursive;
+  font-size:clamp(14px,4.25cqw,25px);
+  line-height:1;
+  white-space:nowrap;
+}
+.card-location{
+  position:absolute;
+  left:-8%;
+  top:84%;
+  width:116%;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(5px,1.23cqw,8px);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:.035em;
+  white-space:nowrap;
+}
+
+/* Keep the actual Canva pink card and lace; only their fuzzy text images are removed. */
+.env-card img[data-root="33"],
+.env-card img[data-root="34"]{
+  image-rendering:auto;
+  backface-visibility:hidden;
+}
+
+/* v19 — use Ballet for the invitation script text + restore orange title */
+500&display=swap');
+
+.card-names{
+  font-family:'Ballet','Brush Script MT','Segoe Script',cursive !important;
+  font-size:clamp(18px,5.9cqw,33px) !important;
+  line-height:.82 !important;
+  font-weight:400 !important;
+  left:-14% !important;
+  top:6.3% !important;
+  width:128% !important;
+}
+.card-and{
+  font-family:'Ballet','Brush Script MT','Segoe Script',cursive !important;
+  font-size:.56em !important;
+  line-height:1.0 !important;
+  margin:.02em 0 .04em !important;
+}
+.card-date{
+  font-family:'Ballet','Brush Script MT','Segoe Script',cursive !important;
+  font-size:clamp(15px,4.75cqw,27px) !important;
+  line-height:.95 !important;
+  left:-5% !important;
+  top:68.4% !important;
+  width:110% !important;
+}
+.orange-couple-title{
+  position:absolute;
+  left:28.6%;
+  top:7.2%;
+  width:42%;
+  z-index:90;
+  text-align:center;
+  color:#ef7a36;
+  font-family:'Ballet','Brush Script MT','Segoe Script',cursive;
+  font-size:clamp(28px,8.2vw,52px);
+  line-height:.82;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(6px);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+.scene.play .orange-couple-title{
+  animation:orangeTitleIn .45s ease-out 1.92s forwards;
+}
+@keyframes orangeTitleIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+
+/* v22 — official Google Fonts Ballet */
+.card-names,
+.card-and,
+.card-date,
+.orange-couple-title{
+  font-family:'Ballet', cursive !important;
+  font-style:normal !important;
+  font-weight:400 !important;
+  font-synthesis:none !important;
+  font-optical-sizing:auto !important;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+
+/* Match Canva proportions */
+.card-names{
+  left:-15% !important;
+  top:5.2% !important;
+  width:130% !important;
+  font-size:clamp(19px,6.35cqw,35px) !important;
+  line-height:.78 !important;
+  letter-spacing:0 !important;
+}
+.card-and{
+  font-size:.53em !important;
+  line-height:.92 !important;
+  margin:.02em 0 .03em !important;
+}
+.card-date{
+  left:-5% !important;
+  top:68.0% !important;
+  width:110% !important;
+  font-size:clamp(15px,4.95cqw,28px) !important;
+  line-height:.94 !important;
+  letter-spacing:0 !important;
+}
+.orange-couple-title{
+  left:28.1% !important;
+  top:7.0% !important;
+  width:43% !important;
+  font-size:clamp(30px,8.7cqw,54px) !important;
+  line-height:.77 !important;
+  letter-spacing:0 !important;
+}
+
+/* Ensure old raster script text stays hidden where live sharp Ballet text is used */
+.env-card img[data-root="36"],
+.env-card img[data-root="43"],
+.env-card img[data-root="44"],
+.env-card img[data-root="45"]{
+  display:none!important;
+}
+
+/* v23 — keep orange title as original Canva artwork, but invitation names/date in Ballet */
+.orange-couple-title{
+  display:none !important;
+}
+.exact-orange-title{
+  position:absolute;
+  z-index:95;
+  display:block;
+  object-fit:fill;
+  image-rendering:auto;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(6px);
+}
+.scene.play .exact-orange-title{
+  animation:exactOrangeInV23 .45s ease-out 1.92s forwards;
+}
+@keyframes exactOrangeInV23{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+
+/* resize and reposition the Ballet invitation text to match the original Canva layout more closely */
+.live-invitation-copy{
+  left:24.55% !important;
+  top:35.15% !important;
+  width:30.85% !important;
+  height:33.35% !important;
+  transform:rotate(-19.8deg) !important;
+}
+
+.card-names{
+  left:-1% !important;
+  top:10.8% !important;
+  width:102% !important;
+  font-size:clamp(12px,4.1cqw,22px) !important;
+  line-height:.88 !important;
+  letter-spacing:0 !important;
+}
+.card-and{
+  font-size:.54em !important;
+  line-height:.94 !important;
+  margin:.02em 0 .03em !important;
+}
+.card-request{
+  left:3% !important;
+  top:57.8% !important;
+  width:94% !important;
+  font-size:clamp(5px,1.08cqw,7px) !important;
+  line-height:1.16 !important;
+  letter-spacing:.055em !important;
+}
+.card-date{
+  left:8% !important;
+  top:72.4% !important;
+  width:84% !important;
+  font-size:clamp(10px,3.15cqw,17px) !important;
+  line-height:1 !important;
+}
+.card-location{
+  left:3% !important;
+  top:86.6% !important;
+  width:94% !important;
+  font-size:clamp(4px,0.95cqw,6.2px) !important;
+  line-height:1.02 !important;
+  letter-spacing:.028em !important;
+}
+
+/* v25 — exact Canva object positions + RESPONSIVE Canva font sizes.
+   502.1245px is the website design width, so the original Canva font values
+   are converted to cqw rather than hard-coded px. */
+
+.card-youssef,
+.card-and-v25,
+.card-lara,
+.card-request-v25,
+.card-date-v25,
+.card-church-v25,
+.card-venue-v25{
+  position:absolute;
+  z-index:72;
+  color:#fff;
+  text-align:center;
+  pointer-events:none;
+  white-space:nowrap;
+  transform:rotate(-19.8deg);
+  transform-origin:center center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+  font-synthesis:none;
+}
+
+/* Original Canva Ballet font sizes:
+   Youssef 18.8, and 13.3, Lara 19.8, date 20.2
+   converted proportionally for a responsive 502.1245px-wide scene. */
+.card-youssef{
+  font-family:'Ballet',cursive;
+  font-size:3.7441cqw;
+  line-height:1;
+}
+.card-and-v25{
+  font-family:'Ballet',cursive;
+  font-size:2.6487cqw;
+  line-height:1;
+}
+.card-lara{
+  font-family:'Ballet',cursive;
+  font-size:3.9432cqw;
+  line-height:1;
+}
+.card-date-v25{
+  font-family:'Ballet',cursive;
+  font-size:4.0229cqw;
+  line-height:1;
+}
+
+/* Supporting copy is independently placed too — no inherited name/date spacing. */
+.card-request-v25{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.48cqw;
+  font-weight:500;
+  line-height:1.12;
+  letter-spacing:.055em;
+  white-space:normal;
+}
+.card-church-v25,
+.card-venue-v25{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.15cqw;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.025em;
+}
+
+/* Ensure no previous v23/v24 sizing can affect these new objects. */
+.card-names,
+.card-date,
+.card-request,
+.card-location{
+  display:none!important;
+}

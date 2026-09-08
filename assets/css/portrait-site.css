@@ -1,0 +1,88 @@
+@import url('./reference-frame.css');
+
+/* One portrait edition on phones, tablets, and desktop. The central design
+   retains Canva's proportions; the framing fills a 390 × 844 iPhone page. */
+:root { --phone-ratio: 390 / 844; }
+.site { width: min(100%, 430px); box-shadow: none; }
+.phone-page {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--phone-ratio);
+  overflow: hidden;
+  background: #fff;
+  container-type: inline-size;
+}
+.scene {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  aspect-ratio: 502.1245 / 767.625;
+  overflow: visible;
+  /* Half the difference between the phone and source artboard heights. */
+  --frame-extension: 31.765cqw;
+}
+/* Anchor water to the page edge, keeping boats on the same water plane. */
+.scene-0 [data-root="10"], .scene-0 [data-root="20"] { margin-top: var(--frame-extension); }
+.scene-0 .bird-2, .scene-0 .bird-5 { margin-top: calc(-1 * var(--frame-extension)); }
+.scene-0 .bird-6 { margin-top: var(--frame-extension); }
+/* Exact source lettering is raster artwork. Only the live countdown needs a
+   container-relative font rule, so desktop uses the same size as the phone. */
+.num { font-size: 8.7cqw; }
+.colon { font-size: 7.5cqw; }
+.lab { font-size: 1.75cqw; }
+.el { will-change: auto; }
+.hotspot { min-height: 44px; }
+.hotspot:focus-visible { outline: 3px solid #be435d; outline-offset: 4px; }
+.visually-hidden {
+  position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip-path: inset(50%); white-space: nowrap; border: 0 !important;
+}
+.skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 3000; padding: .75rem; background: white; color: #222; }
+.skip-link:focus { top: 1rem; }
+
+/* The original RSVP card opens the existing reply form, keeping every invitation
+   page at the same ratio while giving fields enough room and touch targets. */
+.rsvp-dialog {
+  width: min(90vw, 390px); max-height: 90svh; overflow-y: auto;
+  border: 14px solid transparent;
+  border-image: url('../images/rsvp/rsvp-lace-frame-8f2dca09.png') 46 round;
+  padding: 26px 20px; background: #e8e6e3 padding-box;
+  color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
+  overscroll-behavior: contain;
+}
+.rsvp-dialog::backdrop { background: rgb(36 24 26 / 45%); }
+.rsvp-dialog h2 { margin: 0; text-align: center; font: 44px/1.1 'Italiana', serif; letter-spacing: .1em; }
+.reply-note { margin: 12px 0 24px; text-align: center; font: 25px/1.15 'Caveat', cursive; }
+.dialog-close { position: absolute; top: 0; right: 0; width: 44px; height: 44px; border: 0; background: transparent; color: inherit; font: 28px/1 sans-serif; cursor: pointer; }
+.rsvp-form { font-size: 13px; line-height: 1.5; }
+.rsvp-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.rsvp-form__field { margin: 0 0 18px; }
+.rsvp-form label, .rsvp-form legend { display: block; margin-bottom: 6px; font-weight: 600; }
+.rsvp-form input[type="text"], .rsvp-form textarea { width: 100%; min-height: 44px; padding: 8px 4px; border: 0; border-bottom: 1px solid #24181a; border-radius: 0; background: transparent; color: inherit; font: 16px/1.4 'Montserrat',sans-serif; }
+.rsvp-form textarea { min-height: 72px; resize: vertical; }
+.rsvp-form .rsvp-form__options { margin-bottom: 18px; }
+.rsvp-form .rsvp-form__choice { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; font-weight: 400; }
+.rsvp-form__choice input { accent-color: #be435d; width: 17px; height: 17px; }
+.rsvp-form .button { min-height: 44px; padding: 10px 22px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 13px/1.4 'Montserrat',sans-serif; text-transform: uppercase; cursor: pointer; }
+.rsvp-form .button:disabled { opacity: .65; cursor: wait; }
+.rsvp-form__status, .rsvp-form__backup { overflow-wrap: anywhere; }
+.rsvp-form__status[data-tone="error"] { color: #a3384c; }
+.rsvp-form__status[data-tone="success"] { color: #465332; font-weight: 600; }
+.rsvp-form__guard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.rsvp-form.is-complete fieldset { display: none; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid #be435d; outline-offset: 3px; }
+html:has(.rsvp-dialog[open]) { overflow: hidden; }
+.no-script-reply { text-align: center; }
+@media (prefers-reduced-motion: reduce) {
+  .scene-0.play .boat { transform: translateX(-205%) !important; }
+}
+/* The reception landscape meets the bottom edge of its phone page. */
+.scene-5 [data-root="347"], .scene-5 [data-root="345"] { margin-top: var(--frame-extension); }
+/* Without JavaScript, keep the open invitation and the external reply link usable. */
+html:not(.motion) .envelope-scene .open-envelope-group,
+html:not(.motion) .envelope-scene .exact-orange-title { opacity: 1 !important; }
+html:not(.motion) .bird-wrap { opacity: 1; }
+.frame-border { background-size: 100% auto; background-repeat: repeat-y; }

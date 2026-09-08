@@ -1,0 +1,21 @@
+<form class="rsvp-form" data-rsvp-form method="post" accept-charset="UTF-8" aria-describedby="rsvp-form-status">
+              <fieldset data-rsvp-fields disabled>
+                <legend class="visually-hidden">RSVP details</legend>
+                <p class="rsvp-form__field"><label for="full-name">Full name</label><input id="full-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></p>
+                <fieldset class="rsvp-form__options">
+                  <legend>Will you attend?</legend>
+                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Attending" required> Joyfully attending</label>
+                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Not attending"> Unable to attend</label>
+                </fieldset>
+                <p class="rsvp-form__field"><label for="message">Optional message for the couple</label><textarea id="message" name="message" maxlength="500"></textarea></p>
+                <p class="rsvp-form__guard" aria-hidden="true"><label for="website">Website</label><input id="website" name="_honey" type="text" autocomplete="off" tabindex="-1"></p>
+                <input name="language" type="hidden" value="en">
+                <input name="submitted_at" type="hidden">
+                <input name="page_url" type="hidden">
+                <input name="submission_id" type="hidden">
+                <button class="button" type="submit" data-rsvp-submit disabled>Submit RSVP</button>
+              </fieldset>
+              <p class="rsvp-form__status" id="rsvp-form-status" data-rsvp-status role="status" aria-live="polite">Preparing the reply form…</p>
+              <p class="rsvp-form__backup" data-rsvp-backup hidden>Until online replies are connected, please <a href="https://forms.gle/daqf2ug4TypLtKwH8" rel="external" target="_blank">use the RSVP form</a>.</p>
+              <noscript><p class="rsvp-form__backup">JavaScript is required for on-page replies. Please <a href="https://forms.gle/daqf2ug4TypLtKwH8" rel="external" target="_blank">use the RSVP form</a>.</p></noscript>
+            </form>
