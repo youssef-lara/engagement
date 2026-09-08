@@ -1,7 +1,18 @@
 (() => {
   document.documentElement.classList.add('motion');
   const scenes = [...document.querySelectorAll('[data-scene]')];
+  // Each embedded map costs about 430kB of Google's own scripts and tiles, and
+  // the browser was fetching all three before the guest had scrolled at all.
+  // Hand them their address as their own page comes into view instead.
+  const loadMaps = scene => {
+    scene.querySelectorAll('iframe[data-src]').forEach(frame => {
+      frame.src = frame.dataset.src;
+      frame.removeAttribute('data-src');
+    });
+  };
+
   const playScene = async scene => {
+    loadMaps(scene);
     // Decode each scene's local layers before starting its entrance sequence.
     await Promise.allSettled([...scene.querySelectorAll('img')].map(image => {
       image.loading = 'eager';
