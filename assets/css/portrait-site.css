@@ -50,7 +50,11 @@ body { overflow-x: clip; }
 .countdown { background: transparent; }
 .num { font-size: 8.7cqw; }
 .colon { font-size: 7.5cqw; }
-.lab { font-size: 1.75cqw; }
+/* Scaled purely from the page width, DAYS/HOURS/MINUTES/SECONDS came out at
+   6.5px on a 390px phone and 5.3px on a 320px one, which is texture rather
+   than type. Hold a floor of 10px and let the tracking carry the small-caps
+   look the source was after. */
+.lab { font-size: max(10px, 1.75cqw); letter-spacing: 0.04em; }
 .el { will-change: auto; }
 .hotspot { min-height: 44px; }
 .hotspot:focus-visible { outline: 3px solid #be435d; outline-offset: 4px; }
