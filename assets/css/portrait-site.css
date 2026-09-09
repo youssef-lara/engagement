@@ -310,3 +310,34 @@ html:not(.motion) .bird-wrap { opacity: 1; }
    edge. Filling the box reproduces the source exactly; the elongation the
    natural fit was avoiding is smaller than a pixel. */
 .frame-border { background-size: 100% 100%; background-repeat: no-repeat; }
+/* The venue, time and date lines arrived as 213 single-letter images: 13px-tall
+   exports displayed at 10.9px, so every glyph was an upscale and read soft on a
+   3x screen, and no re-export could fix it. Measuring the exports against 18
+   candidate faces identified Poppins Light, self-hosted below as a 30-glyph
+   subset, so those lines are live text now: sharp at any pixel density, and the
+   wording is editable instead of baked into artwork. That is 213 fewer nodes but
+   only 34 fewer requests, because the letter files were shared between lines.
+   The script titles and the calendar strip stay as artwork; the titles are a
+   different, unidentified face and the calendar is too small to identify. */
+@font-face {
+  font-family: 'Poppins Lettering';
+  font-style: normal;
+  font-weight: 300;
+  /* No swap: a fallback at this tracking would jump noticeably, and the same
+     wording is already available to screen readers as real text. */
+  font-display: block;
+  src: url(../fonts/poppins-light-lettering.woff2) format('woff2');
+}
+/* Each line's left, top, size and tracking come from a least-squares fit against
+   the original glyph boxes, so they land within about a pixel of the artwork.
+   Kerning stays off because the fit measured unkerned advances. */
+.letters {
+  font-family: 'Poppins Lettering', Arial, sans-serif;
+  font-weight: 300;
+  color: #000;
+  line-height: 1;
+  white-space: pre;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+}
