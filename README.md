@@ -81,9 +81,17 @@ quadrilateral. `python3 scripts/fit-invitation-photos.py` does that for the two
 couple photographs from the originals kept beside them, leaving the collage's
 positions, overlaps and CSS untouched.
 
-`node scripts/build-reference-site.mjs` rebuilds `index.html`,
-`assets/css/reference-source.css`, and `assets/css/reference-frame.css` from the
-preserved Canva HTML and extracted asset manifest. Edit layout in
-`assets/css/portrait-site.css`, interactions in `assets/js/portrait-site.js`, and
-the reply form markup in `assets/templates/rsvp-form.html`. The RSVP transport
-remains in `assets/js/rsvp.js`.
+`index.html` is maintained by hand. It began as generated output from the
+preserved Canva HTML, and `assets/css/reference-source.css` and
+`assets/css/reference-frame.css` still are that output, but the page has since
+diverged on purpose: the celebration page is gone, the reply card was rebuilt
+from the artwork, and the venue, time and date lines are live text rather than
+letter images. The generator that produced it has been removed, because running
+it would have discarded all of that while claiming to preserve the lettering.
+It is in the history as `scripts/build-reference-site.mjs` if the original
+composition is ever needed for reference.
+
+Edit layout in `assets/css/portrait-site.css`, interactions in
+`assets/js/portrait-site.js`, and the reply form markup in
+`assets/templates/rsvp-form.html`. The RSVP transport remains in
+`assets/js/rsvp.js`.
