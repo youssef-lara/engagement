@@ -14,8 +14,8 @@ const descriptions = [
   '<h2>The Celebration</h2><p>A night out for the grown-ups, sweet dreams for the little ones. Babysitters on duty. Dancing shoes on. Adults only, please!</p>',
   '<h2>Date</h2><p>October 1st, 2026.</p>',
   '<h2>Ceremony</h2><p>St. Anthony Church, Maadi. 7 PM, Main Church.</p>',
-  '<h2>Reception by boat</h2><p>Revana Wedding Venue. Kindly follow this location if you wish to arrive to the venue by boat.</p>',
-  '<h2>Reception by car</h2><p>Revana Wedding Venue. Kindly follow this location if you wish to arrive to the venue by car.</p>',
+  '<h2>Reception by boat</h2><p>Revana Wedding Venue. Kindly follow this location if you wish to arrive at the venue by boat.</p>',
+  '<h2>Reception by car</h2><p>Revana Wedding Venue. Kindly follow this location if you wish to arrive at the venue by car.</p>',
   '<h2>Dress Code</h2><p>Formal dresses for ladies. Formal suits for men.</p>',
   '<h2>RSVP</h2><p>Let us know you’re coming! We’re so excited to celebrate this special moment with you! Kindly submit your RSVP by September 15th, 2026. With love, Youssef and Lara.</p>',
 ];
