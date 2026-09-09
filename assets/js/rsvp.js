@@ -8,7 +8,7 @@
   const language = document.body.dataset.language === "ar" ? "ar" : "en";
   const copy = {
     en: {
-      ready: "Your reply stays private.",
+      ready: "",
       unavailable: "Online replies are being connected. Please use the RSVP form link below.",
       invalidName: "Please enter your full name.",
       sending: "Sending your reply…",
@@ -17,7 +17,7 @@
       submit: "Submit RSVP",
     },
     ar: {
-      ready: "سيتم إرسال ردكم بشكل خاص.",
+      ready: "",
       unavailable: "جارٍ ربط استقبال الردود. يرجى استخدام رابط نموذج تأكيد الحضور أدناه.",
       invalidName: "يرجى كتابة الاسم بالكامل.",
       sending: "جارٍ إرسال ردكم…",

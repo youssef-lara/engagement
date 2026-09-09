@@ -182,13 +182,13 @@ body { overflow-x: clip; }
 .rsvp-heading__letter--p { width: 12cqw; margin: 0 0 0.58cqw -2.8cqw; }
 .rsvp-heading__letter--s { margin-bottom: 1.91cqw; }
 
+/* No lace frame: the doily border spent 27px a side on decoration the floral
+   corners already provide, and the form was paying for it. The paper is now a
+   plain sheet using that width, held off the page edges by the florals. */
 .rsvp-paper {
-  position: relative; z-index: 1; width: 84%; margin: 0 auto;
-  /* The lace is the frame, not a hairline: give the border-image room to draw
-     the scallops at close to their own scale. */
-  border: 7.2cqw solid transparent;
-  border-image: url('../images/optimized/rsvp-lace-frame-8f2dca09.webp') 46 round;
-  padding: 3.5cqw 4cqw 4.5cqw; background: #e8e6e3 padding-box;
+  position: relative; z-index: 1; width: 90%; margin: 0 auto;
+  padding: 6cqw 6cqw 7cqw; background: #e8e6e3;
+  box-shadow: 0 1px 10px rgba(96, 62, 58, 0.09);
   color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
 }
 .reply-note { display: block; width: 66%; height: auto; margin: 0 auto 2.4cqw; }
@@ -210,28 +210,45 @@ body { overflow-x: clip; }
 .rsvp-form input[type="text"], .rsvp-form textarea { width: 100%; min-height: 44px; padding: 8px 4px; border: 0; border-bottom: 1px solid #24181a; border-radius: 0; background: transparent; color: inherit; font: 16px/1.4 'Montserrat',sans-serif; }
 .rsvp-form textarea { min-height: 58px; resize: vertical; }
 .rsvp-form .rsvp-form__options { margin-bottom: 14px; }
-/* Two thumb-sized pills on one row: 44px of target each, 44px shorter than the
-   stacked radio rows they replace, and the choice reads at a glance. Real radios
-   stay in the markup, hidden but focusable, so keyboard and screen readers are
-   unchanged. */
-.rsvp-form__pills { display: flex; gap: 8px; }
+/* The attendance choice as a printed reply card would set it: two squared
+   options on one row, ruled like the fields above them rather than shaped like
+   app buttons, and ticked when chosen. Real radios stay in the markup, hidden
+   but focusable, so keyboard and screen readers are unchanged. */
+.rsvp-form__pills { display: flex; gap: 7px; }
 .rsvp-form .rsvp-form__choice {
-  flex: 1 1 0; display: flex; align-items: center; justify-content: center;
-  min-height: 44px; margin: 0; padding: 5px 6px;
-  border: 1px solid #cdbfba; border-radius: 999px; background: #fdfcfb;
-  font-size: 13.5px; font-weight: 500; line-height: 1.25; text-align: center;
-  cursor: pointer; transition: background-color .15s ease, border-color .15s ease;
+  flex: 1 1 0; display: flex; align-items: center; gap: 7px;
+  min-height: 44px; margin: 0; padding: 6px 2px;
+  border: 0; border-bottom: 1px solid rgba(36, 24, 26, 0.32);
+  font-size: 12.5px; font-weight: 500; line-height: 1.25;
+  white-space: nowrap; cursor: pointer;
 }
 .rsvp-form__choice input {
   position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;
 }
-/* The span rule carries the checked state everywhere; :has() adds the fill. */
-.rsvp-form__choice input:checked + span { font-weight: 700; color: #7f2638; }
-.rsvp-form__choice:has(input:checked) { border-color: #e0879c; background: #f8c3ce; }
-.rsvp-form__choice:has(input:focus-visible) { outline: 3px solid #be435d; outline-offset: 3px; }
-.rsvp-paper .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+/* A ruled box that takes a tick, drawn in CSS so it scales with the type. */
+.rsvp-form__choice span::before {
+  content: '';
+  display: inline-block;
+  width: 13px; height: 13px;
+  margin-right: 6px;
+  border: 1px solid rgba(36, 24, 26, 0.45);
+  vertical-align: -2px;
+}
+.rsvp-form__choice input:checked + span { color: #7f2638; font-weight: 700; }
+.rsvp-form__choice input:checked + span::before {
+  border-color: #7f2638;
+  background: #7f2638
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.4l2.6 2.6L10 3.2' fill='none' stroke='%23fdfcfb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 10px 10px no-repeat;
+}
+.rsvp-form__choice:has(input:checked) { border-bottom-color: #7f2638; }
+.rsvp-form__choice:has(input:focus-visible) { outline: 3px solid #be435d; outline-offset: 4px; }
+.rsvp-paper .button { display: flex; width: 100%; align-items: center; justify-content: center; min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
 .rsvp-paper .button:disabled { opacity: .65; cursor: wait; }
 .rsvp-form__status, .rsvp-form__backup { margin: 2.4cqw 0 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+/* Nothing to say while the form is simply waiting, so it takes no room until it
+   has something. It stays in the DOM for its live-region announcements. */
+.rsvp-form__status:empty { display: none; }
 .rsvp-form__status[data-tone="error"] { color: #a3384c; }
 .rsvp-form__status[data-tone="success"] { color: #465332; font-weight: 600; }
 .rsvp-form__guard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -258,13 +275,23 @@ body { overflow-x: clip; }
 }
 .reply-summary dd { margin: 1px 0 3cqw; }
 .reply-summary dd:last-of-type { margin-bottom: 0; }
+/* Secondary to the reply itself: the same rectangle as the submit button, drawn
+   as an outline, with the calendar mark guests already know from every other
+   site. */
+.rsvp-paper .button--quiet {
+  background: transparent;
+  border-color: rgba(127, 38, 56, 0.4);
+  color: #7f2638;
+  font-weight: 600;
+}
 .reply-calendar {
-  display: block;
-  width: fit-content;
-  margin: 4.5cqw auto 0;
-  text-align: center;
+  display: flex;
+  gap: 9px;
+  width: 100%;
+  margin: 3.4cqw 0 0;
   text-decoration: none;
 }
+.reply-calendar svg { width: 17px; height: 17px; flex: none; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid #be435d; outline-offset: 3px; }
 .no-script-reply { text-align: center; }
