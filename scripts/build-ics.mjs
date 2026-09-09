@@ -24,13 +24,26 @@ const END_UTC = '20261001T210000Z';
 const UID = 'engagement-2026-10-01@youssefg7.github.io';
 const STAMP = '20260908T000000Z';
 
+/* The same query the page's venue link opens, so the calendar entry and the
+   invitation point at one place. LOCATION carries the address as plain text,
+   which is what Apple and Google Calendar make tappable and search on, and the
+   link is repeated in the description because every client turns a URL there
+   into something you can open.
+   A GEO property would give a true native pin, but that needs the church's
+   verified latitude and longitude; a guessed coordinate would send guests
+   somewhere else, so it is left out until the real one is to hand. */
+const CHURCH_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=' +
+  'The%20Great%20St.%20Antony%20Church%2C%20Zahraa%20El%20Maadi%2C%20Cairo%2C%20Egypt';
+
 const editions = [
   {
     file: 'assets/engagement.ics',
     prodid: '-//Youssef and Lara//Engagement//EN',
     summary: "Youssef & Lara's Engagement",
     description:
-      'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.',
+      'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.\n\n'
+      + `Church location: ${CHURCH_MAPS_URL}`,
     location: 'St. Anthony Church, Zahraa El Maadi, Cairo, Egypt',
     url: 'https://youssefg7.github.io/engagement/',
   },
@@ -39,8 +52,9 @@ const editions = [
     prodid: '-//Youssef and Lara//Engagement//AR',
     summary: 'خطوبة يوسف ولارا',
     description:
-      'الخطوبة في كنيسة الأنبا أنطونيوس بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال في قاعة ريفانا.',
-    location: 'كنيسة الأنبا أنطونيوس، بزهراء المعادي القاهرة، مصر',
+      'الخطوبة في كنيسة الأنبا أنطونيوس بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال في قاعة ريفانا.\n\n'
+      + `مكان الكنيسة: ${CHURCH_MAPS_URL}`,
+    location: 'كنيسة الأنبا أنطونيوس، بزهراء المعادي، القاهرة، مصر',
     url: 'https://youssefg7.github.io/engagement/ar/',
   },
 ];

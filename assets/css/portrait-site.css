@@ -172,6 +172,30 @@ body { overflow-x: clip; }
   position: absolute;
   inset: -16px -10px;
 }
+/* A hairline under a venue name is quiet enough to be missed, so the line also
+   carries the map pin every phone already knows. It sits at the end of the name,
+   which `inset-inline-end` puts on the right in English and the left in Arabic
+   without a second rule. Drawn on the anchor rather than in the lettering so it
+   is inside the tap target and shifts no text. */
+/* On the reception pages the venue is one line, so the pin trails the name the
+   way a trailing icon normally does. The ceremony address is two lines and used
+   to be led by a small drawing of a church, which said the same thing as a map
+   pin; the pin leads the address there instead, in the drawing's old place, so a
+   trailing pin no longer dangles off the middle of the block. */
+.scene-4 .map-link::after {
+  inset-inline-start: -3.4cqw;
+  inset-inline-end: auto;
+}
+.map-link::after {
+  content: '';
+  position: absolute;
+  inset-inline-end: -3.4cqw;
+  top: -0.35cqw;
+  width: 2.9cqw;
+  height: 4.1cqw;
+  background: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EA4335' fill-rule='evenodd' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E");
+}
 .map-link:focus-visible { outline: 3px solid #be435d; outline-offset: 5px; }
 .visually-hidden {
   position: absolute !important; width: 1px !important; height: 1px !important;

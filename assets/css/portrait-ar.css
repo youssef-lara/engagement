@@ -47,13 +47,8 @@
 .ar-icon--calendar { width: 4.5785cqw; height: 4.5773cqw; }
 .ar-icon--clock { width: 4.1802cqw; height: 4.1798cqw; }
 /* Three raster pieces that only line up at fixed offsets, so the group is a box
-   of its own proportions with each piece placed inside it by percentage.
-   The source draws this mark half again as tall as the clock, which it can
-   afford on the left of the page where nothing is near it. On the right, at the
-   size it has in the artwork, it reached down into the line below and sat on the
-   florals, so it is brought closer to the clock's size. Aspect ratio is kept
-   (7.3656 / 7.868). */
-.ar-icon--church { position: relative; width: 5.2427cqw; height: 5.6cqw; }
+   of its own proportions with each piece placed inside it by percentage. */
+.ar-icon--church { position: relative; width: 7.3656cqw; height: 7.868cqw; }
 .ar-icon--church img { position: absolute; display: block; }
 
 /* ------------------------------------------------------- calendar grid */

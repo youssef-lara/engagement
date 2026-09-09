@@ -193,32 +193,6 @@ const CLOCK_ICON = `<svg
                 />
               </svg>`;
 
-/* The church mark is three raster pieces (a body and two grey eaves) that only
-   line up at fixed offsets. Tracing them failed before, so they are kept as
-   artwork and re-nested inside a box of the group's own proportions, with each
-   piece placed by the percentage it occupied in the source group. */
-const CHURCH_ICON = `<span aria-hidden="true" class="ar-icon ar-icon--church">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/images/optimized/text-fragment-root-271-785c6081.webp"
-                  style="left: 0%; top: 0%; width: 100%; height: 100%"
-                /><img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/images/optimized/text-fragment-root-272-1c08c219.webp"
-                  style="left: 69.176%; top: 52.239%; width: 24.545%; height: 20.907%"
-                /><img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/images/optimized/text-fragment-root-273-7e0830db.webp"
-                  style="left: 6.494%; top: 52.467%; width: 24.672%; height: 20.6%"
-                />
-              </span>`;
-
 /* ------------------------------------------------------ Arabic calendar grid */
 
 /* The source calendar is one raster with English weekday names and Latin
@@ -285,13 +259,39 @@ function calendarMarkup() {
   );
 }
 
+/* The church mark is three raster pieces (a body and two grey eaves) that only
+   line up at fixed offsets. Tracing them failed before, so they are kept as
+   artwork and re-nested inside a box of the group's own proportions, with each
+   piece placed by the percentage it occupied in the source group. */
+const CHURCH_ICON = `<span aria-hidden="true" class="ar-icon ar-icon--church">
+                <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
+                  src="assets/images/optimized/text-fragment-root-271-785c6081.webp"
+                  style="left: 0%; top: 0%; width: 100%; height: 100%"
+                /><img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
+                  src="assets/images/optimized/text-fragment-root-272-1c08c219.webp"
+                  style="left: 69.176%; top: 52.239%; width: 24.545%; height: 20.907%"
+                /><img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
+                  src="assets/images/optimized/text-fragment-root-273-7e0830db.webp"
+                  style="left: 6.494%; top: 52.467%; width: 24.672%; height: 20.6%"
+                />
+              </span>`;
+
 /**
  * A row of [icon][text]. In DOM order the icon comes first; because the row is
  * right-to-left it lands on the right, where an Arabic line begins.
  * `align` is 'center' (row centred on centerX) or 'right' (row's right edge at
  * rightEdge), mirroring whichever way the source row was aligned.
  */
-function iconRow({ key, text, inner, icon, font, midY, boxH = 6, delay, z, align, centerX, rightEdge, boxW = 70 }) {
+function iconRow({ key, text, inner, icon, font, midY, boxH = 6, delay, z, align, centerX, rightEdge, boxW = 70, gap }) {
   const left = align === 'right'
     ? +(rightEdge - boxW).toFixed(4)
     : +(centerX - boxW / 2).toFixed(4);
@@ -304,6 +304,7 @@ function iconRow({ key, text, inner, icon, font, midY, boxH = 6, delay, z, align
     `              width: ${boxW}%;\n              height: ${boxH}%;\n` +
     `              font-size: ${font}cqw;\n` +
     `              justify-content: ${justify};\n` +
+    (gap === undefined ? '' : `              gap: ${gap}cqw;\n`) +
     `              --delay: ${delay};\n              --z: ${z};\n            "\n` +
     `            >${icon}<span class="ar-row__text">${inner ?? esc(text)}</span></span\n          >`
   );
@@ -564,14 +565,15 @@ sub(
    the mark, and the same three-line rhythm is used in both editions. */
 const CER_RIGHT = 80.5;
 /* Where the first row's words start, once the mark and its gap are taken off. */
-const CER_TEXT_RIGHT = +(CER_RIGHT - 5.2427 - 2.3).toFixed(4);
+const CER_MARK_GAP = 4.2;
+const CER_TEXT_RIGHT = +(CER_RIGHT - 7.3656 - CER_MARK_GAP).toFixed(4);
 sub(
   'ceremony venue row',
   lettersSpan('ceremony-venue'),
   iconRow({
     key: 'ceremony-venue', text: copy.ceremony.venue[0], icon: CHURCH_ICON,
     font: 3.9, midY: 66.6, boxH: 5.6, delay: '0.575s', z: 257,
-    align: 'right', rightEdge: CER_RIGHT, boxW: 66,
+    align: 'right', rightEdge: CER_RIGHT, boxW: 70, gap: CER_MARK_GAP,
   }) + '\n          ' +
   iconRow({
     key: 'ceremony-venue-2', text: copy.ceremony.venue[1], icon: '',
@@ -594,7 +596,9 @@ sub('ceremony meridiem removed', new RegExp(`\\s*${lettersSpan('ceremony-meridie
 sub('ceremony hall removed', new RegExp(`\\s*${lettersSpan('ceremony-hall').source}`), '');
 sub('ceremony hall2 removed', new RegExp(`\\s*${lettersSpan('ceremony-hall-2').source}`), '');
 sub('ceremony clock icon removed', /\s*<svg\b[^>]*\bdata-icon="clock"[^>]*>[\s\S]*?<\/svg>/, '');
-/* The three church pieces now live inside the venue row. */
+/* The Arabic venue row nests its own copy of the church mark so the mark can sit
+   at the right-hand end of the line, so the source's separately positioned pieces
+   are stripped. Leaving them in draws the mark twice. */
 sub('church piece 271 removed', new RegExp(`\\s*${imgByRoot(271).source}`), '');
 sub('church piece 272 removed', new RegExp(`\\s*${imgByRoot(272).source}`), '');
 sub('church piece 273 removed', new RegExp(`\\s*${imgByRoot(273).source}`), '');
@@ -608,8 +612,8 @@ sub(
   `<span class="visually-hidden">${esc(copy.ceremony.mapLink)}</span>`
 );
 /* Covers both address lines, over the words rather than the mark. */
-sub('ceremony map link box', /style="left: 30\.5%; top: 64\.8%; width: 41%; height: 8\.2%"/,
-  `style="left: ${(CER_TEXT_RIGHT - 46).toFixed(1)}%; top: 64.8%; width: 46%; height: 8.2%"`);
+sub('ceremony map link box', /style="left: 34\.23%; top: 64\.8%; width: 41%; height: 8\.2%"/,
+  `style="left: ${(CER_TEXT_RIGHT - 39.1).toFixed(1)}%; top: 64.8%; width: 39.1%; height: 8.2%"`);
 sub(
   'ceremony hidden copy',
   /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Zahraa El Maadi\. 7 PM, Main Church\.<\/p>/,

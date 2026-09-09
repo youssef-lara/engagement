@@ -10,10 +10,12 @@ DTSTART:20261001T160000Z
 DTEND:20261001T210000Z
 SUMMARY:خطوبة يوسف ولارا
 DESCRIPTION:الخطوبة في كنيسة الأنبا أنطونيوس ب
- بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال 
- في قاعة ريفانا.
-LOCATION:كنيسة الأنبا أنطونيوس، بزهراء المعادي الق
- اهرة، مصر
+ زهراء المعادي الساعة ٧ مساءً، وبعدها الا
+ حتفال في قاعة ريفانا.\n\nمكان الكنيسة: https:/
+ /www.google.com/maps/search/?api=1&query=The%20Great%20St.%20Antony%20Chur
+ ch%2C%20Zahraa%20El%20Maadi%2C%20Cairo%2C%20Egypt
+LOCATION:كنيسة الأنبا أنطونيوس، بزهراء المعا
+ دي، القاهرة، مصر
 URL:https://youssefg7.github.io/engagement/ar/
 END:VEVENT
 END:VCALENDAR
