@@ -45,6 +45,27 @@ body { overflow-x: clip; }
 .scene-0 [data-root="10"], .scene-0 [data-root="20"] { margin-top: var(--frame-extension); }
 .scene-0 .bird-2, .scene-0 .bird-5 { margin-top: calc(-1 * var(--frame-extension)); }
 .scene-0 .bird-6 { margin-top: var(--frame-extension); }
+/* The invitation card carries the only wording that really has to be read, and
+   it was the least readable thing on the site: 8.4-8.9px of white Cormorant on
+   pink, measuring about 1.5:1 against the card, where WCAG asks for 4.5:1.
+   White cannot reach that on this pink at any size, so the copy takes the
+   invitation's own deep rose, about 6:1, and the small copy grows by roughly
+   half. The source's line breaks, fonts, rotation, centring and the lace frame
+   are unchanged; only the text boxes widen, symmetrically about the centres they
+   already had, so the larger lines neither wrap nor cross the pink edge. */
+.card-youssef,
+.card-and-v25,
+.card-lara,
+.card-request-v25,
+.card-date-v25,
+.card-church-v25,
+.card-venue-v25 {
+  color: #7f2638;
+}
+.card-request-v25 { font-size: 3.05cqw; line-height: 1.14; }
+.card-church-v25,
+.card-venue-v25 { font-size: 2.4cqw; }
+
 /* Exact source lettering is raster artwork. Only the live countdown needs a
    container-relative font rule, so desktop uses the same size as the phone. */
 .countdown { background: transparent; }
