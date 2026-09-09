@@ -570,12 +570,12 @@ sub(
   lettersSpan('ceremony-venue'),
   iconRow({
     key: 'ceremony-venue', text: copy.ceremony.venue[0], icon: CHURCH_ICON,
-    font: 3.9, midY: 66.08, boxH: 5.6, delay: '0.575s', z: 257,
+    font: 3.9, midY: 66.6, boxH: 5.6, delay: '0.575s', z: 257,
     align: 'right', rightEdge: CER_RIGHT, boxW: 66,
   }) + '\n          ' +
   iconRow({
     key: 'ceremony-venue-2', text: copy.ceremony.venue[1], icon: '',
-    font: 3.9, midY: 69.58, boxH: 5.6, delay: '0.61s', z: 257,
+    font: 3.9, midY: 71.2, boxH: 5.6, delay: '0.61s', z: 257,
     align: 'right', rightEdge: CER_TEXT_RIGHT, boxW: 60,
   })
 );
@@ -586,7 +586,7 @@ sub(
   lettersSpan('ceremony-hour'),
   iconRow({
     key: 'ceremony-time', text: copy.ceremony.time, icon: CLOCK_ICON,
-    font: 3.9, midY: 73.08, boxH: 5.6, delay: '0.085s', z: 215,
+    font: 3.9, midY: 75.8, boxH: 5.6, delay: '0.085s', z: 215,
     align: 'right', rightEdge: CER_RIGHT, boxW: 66,
   })
 );
@@ -608,8 +608,8 @@ sub(
   `<span class="visually-hidden">${esc(copy.ceremony.mapLink)}</span>`
 );
 /* Covers both address lines, over the words rather than the mark. */
-sub('ceremony map link box', /style="left: 30\.5%; top: 64\.1%; width: 41%; height: 7\.2%"/,
-  `style="left: ${(CER_TEXT_RIGHT - 46).toFixed(1)}%; top: 64.1%; width: 46%; height: 7.2%"`);
+sub('ceremony map link box', /style="left: 30\.5%; top: 64\.8%; width: 41%; height: 8\.2%"/,
+  `style="left: ${(CER_TEXT_RIGHT - 46).toFixed(1)}%; top: 64.8%; width: 46%; height: 8.2%"`);
 sub(
   'ceremony hidden copy',
   /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Zahraa El Maadi\. 7 PM, Main Church\.<\/p>/,
