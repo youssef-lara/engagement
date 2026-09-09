@@ -8,8 +8,9 @@
   "vars": {
     "SPREADSHEET_ID": "1I991DlUFqCVRogBcmf5jFwY0pRwyN0HJUj3ebgfQ0aU",
     "SHEET_NAME": "RSVP Responses",
-    // Both origins stay allowed through the move to youssef-lara.github.io, so
-    // invitations already shared under the old host keep working.
-    "ALLOWED_ORIGINS": "https://youssefg7.github.io,https://youssef-lara.github.io"
+    // Only the live host. The former youssefg7.github.io was listed during the
+    // move and dropped once this one was verified, so a stale copy of the page
+    // cannot quietly file responses into the same sheet.
+    "ALLOWED_ORIGINS": "https://youssef-lara.github.io"
   }
 }
