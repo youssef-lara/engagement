@@ -185,9 +185,13 @@ body { overflow-x: clip; }
 /* No lace frame: the doily border spent 27px a side on decoration the floral
    corners already provide, and the form was paying for it. The paper is now a
    plain sheet using that width, held off the page edges by the florals. */
+/* Slightly narrower than the width the lace used to occupy, and translucent
+   enough to let the page and the florals behind it show through, so the sheet
+   reads as laid on the invitation rather than cut out of it. Text stays at
+   14:1 against the blended colour. */
 .rsvp-paper {
-  position: relative; z-index: 1; width: 90%; margin: 0 auto;
-  padding: 6cqw 6cqw 7cqw; background: #e8e6e3;
+  position: relative; z-index: 1; width: 86%; margin: 0 auto;
+  padding: 6cqw 6cqw 7cqw; background: rgba(232, 230, 227, 0.86);
   box-shadow: 0 1px 10px rgba(96, 62, 58, 0.09);
   color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
 }
