@@ -175,12 +175,9 @@ body { overflow-x: clip; }
   justify-content: center;
   margin: 0 0 2.6cqw;
 }
-.rsvp-heading__letter { display: block; height: auto; }
-.rsvp-heading__letter--r { width: 9.19cqw; }
-.rsvp-heading__letter--s { width: 9.69cqw; margin: 0 -1.2cqw 0 1.96cqw; }
-.rsvp-heading__letter--v { width: 8.99cqw; margin-bottom: 1.88cqw; }
-.rsvp-heading__letter--p { width: 12cqw; margin: 0 0 0.58cqw -2.8cqw; }
-.rsvp-heading__letter--s { margin-bottom: 1.91cqw; }
+/* The four letters were separately positioned images, each nudged into place.
+   They are one traced outline now, so the box is simply the group's own size. */
+.rsvp-heading__word { display: block; width: 37.8256cqw; height: 18.3209cqw; }
 
 /* No lace frame: the doily border spent 27px a side on decoration the floral
    corners already provide, and the form was paying for it. The paper is now a
