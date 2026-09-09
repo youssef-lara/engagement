@@ -20,6 +20,9 @@
     }));
     await document.fonts.ready;
     scene.classList.add('play');
+    // Marks the end of the entrance, so a replay control can wait for its turn.
+    clearTimeout(scene.settleTimer);
+    scene.settleTimer = setTimeout(() => scene.classList.add('settled'), 4600);
   };
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
@@ -31,6 +34,18 @@
     scenes.forEach(scene => observer.observe(scene));
   } else scenes.forEach(playScene);
   if (scenes[0]) playScene(scenes[0]);
+
+  // Let the envelope be opened again: drop the class, force a reflow so the
+  // animations are rewound rather than continued, and start the sequence over.
+  document.querySelectorAll('[data-replay]').forEach(button => {
+    button.addEventListener('click', () => {
+      const scene = button.closest('[data-scene]');
+      if (!scene) return;
+      scene.classList.remove('play', 'settled');
+      void scene.offsetWidth;
+      requestAnimationFrame(() => playScene(scene));
+    });
+  });
 
   const target = new Date('2026-10-01T19:00:00+03:00').getTime();
   function tick() {

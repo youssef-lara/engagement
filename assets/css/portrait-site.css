@@ -88,6 +88,41 @@ body { overflow-x: clip; }
 .hotspot { min-height: 44px; }
 .hotspot:focus-visible { outline: 3px solid #be435d; outline-offset: 4px; }
 
+/* The envelope opening is the invitation's one piece of theatre and it played
+   once per visit, so a guest scrolling quickly past page two never saw it. This
+   sits in the white between the two bottom floral corners and only fades in once
+   the sequence has finished, so it never competes with the first viewing. */
+.replay-envelope {
+  position: absolute;
+  left: 50%;
+  bottom: 3.2%;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  padding: 0;
+  border: 1px solid rgba(127, 38, 56, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: #7f2638;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+/* `settled` is set by the script once the sequence has run, rather than a CSS
+   delay: page two is usually already in view on load, so the class would be
+   there before the first paint and the delay would never apply. */
+.scene.settled .replay-envelope { opacity: 1; pointer-events: auto; }
+.replay-envelope svg { width: 19px; height: 19px; }
+.replay-envelope:focus-visible { outline: 3px solid #be435d; outline-offset: 4px; }
+/* Nothing to replay when the invitation is shown in its settled open state. */
+@media (prefers-reduced-motion: reduce) {
+  .replay-envelope { display: none; }
+}
+
 /* Each venue line is raster lettering from the source, so the only way to open
    a location was Google's own button inside the embed. An anchor sits over the
    line instead: it opens the guest's maps app, survives a blocked or slow
