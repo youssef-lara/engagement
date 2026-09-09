@@ -21,7 +21,14 @@ const ROOT = path.resolve(import.meta.dirname, '..');
    16:00Z. Stored as UTC so no client has to resolve a timezone name. */
 const START_UTC = '20261001T160000Z';
 const END_UTC = '20261001T210000Z';
-const UID = 'engagement-2026-10-01@youssefg7.github.io';
+/* One UID per edition. Sharing one looked tidier, on the reasoning that it is a
+   single event and a guest who added both files should end up with a single
+   entry. In practice it broke the Arabic download: a calendar that already held
+   the English event treated the Arabic file as the same event and kept the
+   English title, so the Arabic entry appeared to do nothing at all. Distinct
+   UIDs mean each file adds the event in its own language. */
+const UID_EN = 'engagement-2026-10-01@youssefg7.github.io';
+const UID_AR = 'engagement-2026-10-01-ar@youssefg7.github.io';
 const STAMP = '20260908T000000Z';
 
 /* The same query the page's venue link opens, so the calendar entry and the
@@ -39,6 +46,7 @@ const CHURCH_MAPS_URL =
 const editions = [
   {
     file: 'assets/engagement.ics',
+    uid: UID_EN,
     prodid: '-//Youssef and Lara//Engagement//EN',
     summary: "Youssef & Lara's Engagement",
     description:
@@ -49,6 +57,7 @@ const editions = [
   },
   {
     file: 'assets/engagement-ar.ics',
+    uid: UID_AR,
     prodid: '-//Youssef and Lara//Engagement//AR',
     summary: 'خطوبة يوسف ولارا',
     description:
@@ -98,7 +107,7 @@ for (const e of editions) {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:${UID}`,
+    `UID:${e.uid}`,
     `DTSTAMP:${STAMP}`,
     `DTSTART:${START_UTC}`,
     `DTEND:${END_UTC}`,
