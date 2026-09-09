@@ -58,7 +58,7 @@ const editions = [
       'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.\n\n'
       + `Church location: ${CHURCH_MAPS_URL}`,
     location: 'St. Anthony Church, Zahraa El Maadi, Cairo, Egypt',
-    url: 'https://youssef-lara.github.io/',
+    url: 'https://youssef-lara.github.io/engagement/',
   },
   {
     file: 'assets/engagement-ar.ics',
@@ -69,7 +69,7 @@ const editions = [
       'الخطوبة في كنيسة الأنبا أنطونيوس بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال في قاعة ريفانا.\n\n'
       + `مكان الكنيسة: ${CHURCH_MAPS_URL}`,
     location: 'كنيسة الأنبا أنطونيوس، بزهراء المعادي، القاهرة، مصر',
-    url: 'https://youssef-lara.github.io/ar/',
+    url: 'https://youssef-lara.github.io/engagement/ar/',
   },
 ];
 

@@ -25,15 +25,16 @@ Build a simple, modular, easily editable engagement invitation website that:
 
 ## 2. Confirmed deployment target
 
-- Publishing GitHub.com account: `youssef-lara` (the site moved here so the URL is the
-  bare `youssef-lara.github.io`; Pages derives that from the repository's owner, so the
-  repository has to be owned by that account rather than shared with it).
-- Repository: `youssef-lara.github.io`, a user site served at the domain root.
+- Publishing GitHub.com account: `youssef-lara`, which is what puts the site on
+  `youssef-lara.github.io`. Pages takes that host from the repository's owner, so the
+  repository has to be owned by the account rather than merely shared with it; adding
+  the account as a collaborator leaves the old host in place.
+- Repository: `engagement`, a project site served under `/engagement/`.
 - Authoring account: `youssefg7`, previously the publishing account too.
 - The repository did not exist at the time of the audit.
 - The current local folder was not a Git repository at the time of the audit.
-- English URL: `https://youssef-lara.github.io/`.
-- Arabic URL: `https://youssef-lara.github.io/ar/`.
+- English URL: `https://youssef-lara.github.io/engagement/`.
+- Arabic URL: `https://youssef-lara.github.io/engagement/ar/`.
 - Previously `https://youssefg7.github.io/engagement/`; the calendar UIDs still carry that
   host on purpose, because a UID identifies an event rather than locating it and changing
   one would duplicate the entry for guests who already added the invitation.
@@ -407,7 +408,7 @@ Completion condition: the source behavior can be compared against the rebuild wi
 
 ### Task 2 — Initialize repository and modular structure
 
-Status: **Complete (2026-08-30), republished under `youssef-lara` (2026-09-09).** Git uses `main`, the public repository is [`youssef-lara/youssef-lara.github.io`](https://github.com/youssef-lara/youssef-lara.github.io), the modular static structure is present, and both language routes load locally with their relative shared-asset paths.
+Status: **Complete (2026-08-30), republished under `youssef-lara` (2026-09-09).** Git uses `main`, the public repository is [`youssef-lara/engagement`](https://github.com/youssef-lara/engagement), the modular static structure is present, and both language routes load locally with their relative shared-asset paths.
 
 - Initialize Git with `main`.
 - Create the `youssefg7/engagement` repository.
