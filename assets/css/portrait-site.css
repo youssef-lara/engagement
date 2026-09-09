@@ -4,9 +4,10 @@
    uses the original Canva aspect ratio with the restored reference visuals. */
 :root { --phone-ratio: 502.1245 / 767.625; }
 .site { width: min(100%, 430px); box-shadow: none; }
-/* Still clips the artwork to the page edge, but without turning the strip into
-   a scroll container, which would own the pages' scroll snapping. */
-.site { overflow: clip; }
+/* Each page clips its own artwork, so the strip does not need to clip as well.
+   Leaving it visible lets the pages cast their shadow, and keeps the strip from
+   becoming a scroll container, which would own the pages' scroll snapping. */
+.site { overflow: visible; }
 .phone-page {
   position: relative;
   width: 100%;
@@ -14,7 +15,14 @@
   overflow: hidden;
   background: #fff;
   container-type: inline-size;
+  /* Two white pages met at an invisible seam, so a tall phone showed a page and
+     a third of the next with nothing to say where one ended. Each page is now a
+     sheet of paper resting on the invitation's own paper colour: the gap draws
+     the boundary and the shadow gives it depth, which also stops the strip on a
+     wide screen from looking like a screenshot pasted onto a background. */
+  box-shadow: 0 2px 18px rgba(96, 62, 58, 0.11);
 }
+.phone-page + .phone-page { margin-top: 10px; }
 
 /* Page-to-page snapping. Each page settles with its own top at the top of the
    viewport. `proximity` only assists a scroll that already ends near a page
