@@ -21,6 +21,7 @@
  * Usage: node scripts/build-ar.mjs
  */
 
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -41,6 +42,21 @@ const trimDeep = (value) =>
 
 const copy = trimDeep(JSON.parse(fs.readFileSync(COPY, 'utf8')));
 let html = fs.readFileSync(SRC, 'utf8');
+
+/* The arched strapline is pre-shaped outlines rather than live text, so it has to
+   be redrawn whenever its wording changes. Running it from here means one command
+   rebuilds the page and the artwork together and they cannot fall out of step. */
+try {
+  const out = execFileSync('python3', [path.join(ROOT, 'scripts', 'build-ar-strapline.py')], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  process.stdout.write(out);
+} catch (error) {
+  console.error('  FAIL  could not redraw the strapline outlines');
+  console.error(String(error.stderr || error.message).trimEnd());
+  process.exit(1);
+}
 
 /* The scene box is 502.1245 x 767.625, so one percent of its height is this many
    cqw. Percentages taken from the source geometry convert straight across. */
@@ -356,18 +372,24 @@ sub('skip link', /<a class="skip-link" href="#main-content">Skip to invitation<\
 
 sub('scene label opening', /aria-label="Opening"/, `aria-label="${esc(copy.opening.sceneLabel)}"`);
 
-/* The strapline arcs over the top of the oval, so it is set on a curved path
-   rather than as a straight line. The box matches the source raster exactly. */
+/* The strapline arcs over the top of the oval. It was live text on an SVG
+   <textPath>, which Chromium lays out correctly but WebKit does not: on iOS the
+   run came out in logical rather than visual order, so the two words swapped
+   places and each word's letters ran backwards. Since there is no markup or CSS
+   switch for that, the arc is now pre-shaped outlines written by
+   scripts/build-ar-strapline.py, which leaves nothing for a browser to lay out.
+   The box matches the source raster exactly. */
 sub(
   'opening strapline',
   imgByRoot(5),
-  `<svg
+  `<img
+            alt=""
             aria-hidden="true"
-            class="el hero-rise ar-strapline"
+            class="el hero-rise"
             data-root="5"
-            focusable="false"
-            viewBox="0 0 346 104"
-            preserveAspectRatio="none"
+            decoding="async"
+            loading="eager"
+            src="assets/images/opening/strapline-ar.svg"
             style="
               left: 37.288362%;
               top: 25.669695%;
@@ -376,12 +398,7 @@ sub(
               --delay: 0.32s;
               --z: 5;
             "
-          >
-            <path id="ar-strapline-curve" d="M 6 112 Q 173 -54 340 112" fill="none"></path>
-            <text dy="0">
-              <textPath href="#ar-strapline-curve" startOffset="50%" text-anchor="middle">${esc(copy.opening.strapline)}</textPath>
-            </text>
-          </svg>`
+          />`
 );
 
 sub(

@@ -105,22 +105,10 @@
   letter-spacing: 0;
 }
 
-/* The strapline follows the top of the oval, so it is set on a curved path. The
-   viewBox is 346 x 100, the same 3.46 ratio as its box, so stretching the SVG to
-   fill does not distort the glyphs. */
-.ar-strapline { overflow: visible; }
-.ar-strapline path { fill: none; }
-/* The English line is letter-spaced small caps, which is how it spans the whole
-   arc. Tracking would break the joins between Arabic letters, so the line is set
-   a little larger and the two words are pushed apart with word-spacing instead:
-   that only stretches the space, leaving every join intact. */
-.ar-strapline text {
-  font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  word-spacing: 14px;
-  fill: #111;
-}
+/* The strapline that follows the top of the oval is drawn as outlines by
+   scripts/build-ar-strapline.py and loaded as an image, so it needs no type
+   rules here. It carries its own size, weight and word spacing, which are set at
+   the top of that script. */
 
 /* ------------------------------------------------------- envelope + card */
 
