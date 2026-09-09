@@ -166,6 +166,25 @@
 .card-church-v25,
 .card-venue-v25 { font-size: 2.3cqw !important; line-height: 1.25 !important; }
 
+/* Every line on the card's own centre line. The card is rotated 19.8 degrees, so
+   that centre line runs diagonally and each row needs a different `left` to sit
+   on it; the source traced its rows from the artwork one by one and they drifted
+   off it by up to 12px, the venue line worst. English hides the drift because its
+   lines are long enough to nearly fill the card, so an off-centre box still looks
+   centred. Arabic is much shorter — the venue reads as five characters — and a
+   short line in a shifted box is plainly lopsided.
+   The values solve `x·cos19.8 - y·sin19.8 = 48.92` for each row's own vertical
+   centre, 48.92 being the pink panel's axis measured from the frame artwork. Only
+   `left` changes, so sizes, rotation and vertical rhythm are untouched, and the
+   English positions are left exactly as traced. */
+.card-youssef { left: 22.5672% !important; }
+.card-and-v25 { left: 34.1096% !important; }
+.card-lara { left: 24.9019% !important; }
+.card-request-v25 { left: 26.2502% !important; }
+.card-date-v25 { left: 36.1415% !important; }
+.card-church-v25 { left: 30.7543% !important; }
+.card-venue-v25 { left: 34.8474% !important; }
+
 /* ------------------------------------------------------------- countdown */
 
 /* Impact carries no Arabic-Indic digits, so the numerals take the same

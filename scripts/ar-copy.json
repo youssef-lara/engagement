@@ -43,7 +43,8 @@
       "لمشاركتهم فرحة",
       "الخطوبة"
     ],
-    "cardDate": "٠١.١٠.٢٠٢٦",
+    "cardDate": "٠١\u200f.\u200f١٠\u200f.\u200f٢٠٢٦",
+    "_cardDateNote": "Day first, reading right to left. The \\u200f marks are right-to-left marks and are invisible; they are what makes the three groups order right to left. Without them the digits and dots form one number to the bidi algorithm, which always runs left to right, so the day ended up on the left. Each group still reads left to right internally, so 01 does not become 10.",
     "_cardChurchNote": "Two lines. The district sits on its own line so the address stays inside the pink card.",
     "cardChurch": [
       "كنيسة الأنبا أنطونيوس،",
