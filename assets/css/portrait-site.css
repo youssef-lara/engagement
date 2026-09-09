@@ -142,6 +142,10 @@ body { overflow-x: clip; }
 }
 /* A hairline in the invitation's own rose, held clear of the baseline: it says
    there is something here without borrowing the look of an input. */
+/* The ceremony address runs to two lines, so the church name and the district
+   both carry the rule: the whole address is the link. */
+[data-letters^="ceremony-venue"],
+[data-ar^="ceremony-venue"] .ar-row__text,
 [data-letters$="-venue"],
 [data-ar$="-venue"] .ar-row__text,
 [data-ar$="-venue"]:not(:has(.ar-row__text)) {
@@ -151,11 +155,16 @@ body { overflow-x: clip; }
   text-underline-offset: 3.5px;
   transition: text-decoration-color 0.2s ease;
 }
-.map-link:hover + [data-letters$="-venue"],
+.scene:has(.map-link:hover) [data-letters^="ceremony-venue"],
+.scene:has(.map-link:hover) [data-ar^="ceremony-venue"] .ar-row__text,
 .scene:has(.map-link:hover) [data-letters$="-venue"],
 .scene:has(.map-link:hover) [data-ar$="-venue"] .ar-row__text,
+.scene:has(.map-link:hover) [data-ar$="-venue"]:not(:has(.ar-row__text)),
+.scene:has(.map-link:focus-visible) [data-letters^="ceremony-venue"],
+.scene:has(.map-link:focus-visible) [data-ar^="ceremony-venue"] .ar-row__text,
 .scene:has(.map-link:focus-visible) [data-letters$="-venue"],
-.scene:has(.map-link:focus-visible) [data-ar$="-venue"] .ar-row__text {
+.scene:has(.map-link:focus-visible) [data-ar$="-venue"] .ar-row__text,
+.scene:has(.map-link:focus-visible) [data-ar$="-venue"]:not(:has(.ar-row__text)) {
   text-decoration-color: rgba(190, 67, 93, 0.85);
 }
 .map-link::before {

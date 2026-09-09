@@ -557,24 +557,37 @@ sub(
   })
 );
 
-/* The source left-aligns both information rows under the map. Mirrored, they
-   right-align on the map's right edge, each led by its own mark. */
+/* The source left-aligns the information rows under the map. Mirrored, they
+   right-align on the map's right edge, each led by its own mark.
+   The address runs to two lines: with the district spelled out it no longer fits
+   one. The second line hangs under the first, aligned to the words rather than to
+   the mark, and the same three-line rhythm is used in both editions. */
+const CER_RIGHT = 80.5;
+/* Where the first row's words start, once the mark and its gap are taken off. */
+const CER_TEXT_RIGHT = +(CER_RIGHT - 5.2427 - 2.3).toFixed(4);
 sub(
   'ceremony venue row',
   lettersSpan('ceremony-venue'),
   iconRow({
-    key: 'ceremony-venue', text: copy.ceremony.venue, icon: CHURCH_ICON,
-    font: 3.9, midY: 68.0528, boxH: 6.6, delay: '0.575s', z: 257,
-    align: 'right', rightEdge: 80.5, boxW: 66,
+    key: 'ceremony-venue', text: copy.ceremony.venue[0], icon: CHURCH_ICON,
+    font: 3.9, midY: 66.08, boxH: 5.6, delay: '0.575s', z: 257,
+    align: 'right', rightEdge: CER_RIGHT, boxW: 66,
+  }) + '\n          ' +
+  iconRow({
+    key: 'ceremony-venue-2', text: copy.ceremony.venue[1], icon: '',
+    font: 3.9, midY: 69.58, boxH: 5.6, delay: '0.61s', z: 257,
+    align: 'right', rightEdge: CER_TEXT_RIGHT, boxW: 60,
   })
 );
+/* Both Arabic address lines were emitted above, so the source's second run goes. */
+sub('ceremony venue line 2 removed', new RegExp(`\\s*${lettersSpan('ceremony-venue-2').source}`), '');
 sub(
   'ceremony time row',
   lettersSpan('ceremony-hour'),
   iconRow({
     key: 'ceremony-time', text: copy.ceremony.time, icon: CLOCK_ICON,
-    font: 3.9, midY: 72.0282, boxH: 5.6, delay: '0.085s', z: 215,
-    align: 'right', rightEdge: 80.5, boxW: 66,
+    font: 3.9, midY: 73.08, boxH: 5.6, delay: '0.085s', z: 215,
+    align: 'right', rightEdge: CER_RIGHT, boxW: 66,
   })
 );
 sub('ceremony meridiem removed', new RegExp(`\\s*${lettersSpan('ceremony-meridiem').source}`), '');
@@ -594,8 +607,9 @@ sub(
   /<span class="visually-hidden">Open St\. Anthony Church, Zahraa El Maadi in Google Maps<\/span>/,
   `<span class="visually-hidden">${esc(copy.ceremony.mapLink)}</span>`
 );
-sub('ceremony map link box', /style="left: 31%; top: 67%; width: 50%; height: 2\.1%"/,
-  'style="left: 26.9%; top: 66.6%; width: 53.6%; height: 2.6%"');
+/* Covers both address lines, over the words rather than the mark. */
+sub('ceremony map link box', /style="left: 30\.5%; top: 64\.1%; width: 41%; height: 7\.2%"/,
+  `style="left: ${(CER_TEXT_RIGHT - 46).toFixed(1)}%; top: 64.1%; width: 46%; height: 7.2%"`);
 sub(
   'ceremony hidden copy',
   /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Zahraa El Maadi\. 7 PM, Main Church\.<\/p>/,
