@@ -96,7 +96,7 @@ writeFileSync(new URL('index.html',root), `<!doctype html>
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="./assets/images/social/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Youssef &amp; Lara">
-<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/fonts-portrait.css">
 <link rel="stylesheet" href="assets/css/reference-source.css">
 <link rel="stylesheet" href="assets/css/portrait-site.css">
 <script src="assets/js/portrait-site.js" defer></script>
