@@ -843,10 +843,21 @@ sub(
    original paths verbatim. */
 html = html.replace(/\.\/assets\//g, 'assets/');
 html = html.replace(/href="\.\/favicon\.ico"/g, 'href="\u0000FAVICON\u0000"');
+/* Absolute URLs are already complete and must not gain a parent segment: the
+   social card's og:image is absolute, and prefixing it produced
+   `engagement/../assets/...`, which resolves off the site root and 404s, so the
+   Arabic link preview arrived with no image at all. They are parked here and put
+   back afterwards. */
+const absolute = [];
+html = html.replace(/https?:\/\/[^"'\s]+/g, (url) => {
+  absolute.push(url);
+  return `\u0000URL${absolute.length - 1}\u0000`;
+});
 const before = (html.match(/(?<!\.\.\/)\bassets\//g) || []).length;
 html = html.replace(/(?<!\.\.\/)\bassets\//g, '../assets/');
+html = html.replace(/\u0000URL(\d+)\u0000/g, (_, i) => absolute[Number(i)]);
 html = html.replace(/href="\u0000FAVICON\u0000"/g, 'href="../favicon.ico"');
-console.log(`  paths   rewrote ${before} asset references to ../assets/`);
+console.log(`  paths   rewrote ${before} asset references, left ${absolute.length} absolute URLs alone`);
 
 /* --------------------------------------------------------------- output */
 
