@@ -342,7 +342,7 @@ sub(
 );
 sub(
   'og:description',
-  /<meta\n      property="og:description"\n      content="1 October 2026 · St\. Anthony Church, Maadi, then Revana Wedding Venue\. Kindly reply by 15 September\."\n    \/>/,
+  /<meta\n      property="og:description"\n      content="1 October 2026 · St\. Anthony Church, Zahraa El Maadi, then Revana Wedding Venue\. Kindly reply by 15 September\."\n    \/>/,
   `<meta\n      property="og:description"\n      content="${esc(copy.head.ogDescription)}"\n    />`
 );
 sub(
@@ -452,7 +452,7 @@ sub(
   copy.invitation.cardRequest.map(esc).join('<br />')
 );
 sub('card date', /(\n              class="card-date-v25"[\s\S]*?>\n              )01\.10\.2026(\n)/, `$1${esc(copy.invitation.cardDate)}$2`);
-sub('card church', /(\n              class="card-church-v25"[\s\S]*?>\n              )St\. Anthony Church, Maadi(\n)/, `$1${esc(copy.invitation.cardChurch)}$2`);
+sub('card church', /(\n              class="card-church-v25"[\s\S]*?>\n              )St\. Anthony Church, Zahraa El Maadi(\n)/, `$1${esc(copy.invitation.cardChurch)}$2`);
 sub('card venue', /(\n              class="card-venue-v25"[\s\S]*?>\n              )Revana Wedding Venue(\n)/, `$1${esc(copy.invitation.cardVenue)}$2`);
 
 /* The source hides this live text and shows an orange raster of the same words.
@@ -591,14 +591,14 @@ sub('ceremony map title', /title="Ceremony church — Google Map"/, `title="${es
    pulled in to sit over the words it belongs to instead of trailing past them. */
 sub(
   'ceremony map link',
-  /<span class="visually-hidden">Open St\. Anthony Church, Maadi in Google Maps<\/span>/,
+  /<span class="visually-hidden">Open St\. Anthony Church, Zahraa El Maadi in Google Maps<\/span>/,
   `<span class="visually-hidden">${esc(copy.ceremony.mapLink)}</span>`
 );
 sub('ceremony map link box', /style="left: 31%; top: 67%; width: 50%; height: 2\.1%"/,
   'style="left: 26.9%; top: 66.6%; width: 53.6%; height: 2.6%"');
 sub(
   'ceremony hidden copy',
-  /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Maadi\. 7 PM, Main Church\.<\/p>/,
+  /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Zahraa El Maadi\. 7 PM, Main Church\.<\/p>/,
   `<h2>${esc(copy.ceremony.hiddenHeading)}</h2>\n            <p>${esc(copy.ceremony.hiddenBody)}</p>`
 );
 
@@ -803,7 +803,7 @@ sub('calendar file', /href="assets\/engagement\.ics"/, 'href="assets/engagement-
 
 sub(
   'confirmed summary',
-  /<dt>When<\/dt>\n                <dd>\n                  <time datetime="2026-10-01T19:00\+03:00"\n                    >Thursday 1 October 2026, 7 PM<\/time\n                  >\n                <\/dd>\n                <dt>Ceremony<\/dt>\n                <dd>St\. Anthony Church, Maadi<\/dd>\n                <dt>Reception<\/dt>\n                <dd>Revana Wedding Venue<\/dd>/,
+  /<dt>When<\/dt>\n                <dd>\n                  <time datetime="2026-10-01T19:00\+03:00"\n                    >Thursday 1 October 2026, 7 PM<\/time\n                  >\n                <\/dd>\n                <dt>Ceremony<\/dt>\n                <dd>St\. Anthony Church, Zahraa El Maadi<\/dd>\n                <dt>Reception<\/dt>\n                <dd>Revana Wedding Venue<\/dd>/,
   `<dt>${esc(copy.rsvp.confirmed[0].term)}</dt>\n                <dd>\n                  <time datetime="2026-10-01T19:00+03:00"\n                    >${esc(copy.rsvp.confirmed[0].value)}</time\n                  >\n                </dd>\n                <dt>${esc(copy.rsvp.confirmed[1].term)}</dt>\n                <dd>${esc(copy.rsvp.confirmed[1].value)}</dd>\n                <dt>${esc(copy.rsvp.confirmed[2].term)}</dt>\n                <dd>${esc(copy.rsvp.confirmed[2].value)}</dd>`
 );
 

@@ -622,7 +622,7 @@ Deployment verification:
 - Couple: Youssef George and Lara Sameeh.
 - Event date: 1 October 2026.
 - Countdown target: 1 October 2026 at 7:00 PM, Cairo time (`+03:00`).
-- Ceremony: St. Anthony Church, Maadi.
+- Ceremony: St. Anthony Church, Zahraa El Maadi.
 - Ceremony time shown: 7 PM.
 - Reception: Revana Wedding Venue.
 - Separate arrival directions are shown for boat and car.

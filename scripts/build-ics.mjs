@@ -30,8 +30,8 @@ const editions = [
     prodid: '-//Youssef and Lara//Engagement//EN',
     summary: "Youssef & Lara's Engagement",
     description:
-      'Ceremony at St. Anthony Church, Maadi at 7 PM, then the reception at Revana Wedding Venue.',
-    location: 'St. Anthony Church, Maadi, Cairo, Egypt',
+      'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.',
+    location: 'St. Anthony Church, Zahraa El Maadi, Cairo, Egypt',
     url: 'https://youssefg7.github.io/engagement/',
   },
   {

@@ -192,7 +192,7 @@ Lara Sameeh
 Request the pleasure of your
 presence at their Engagement
 01.10.2026
-St. Anthony Church, Maadi
+St. Anthony Church, Zahraa El Maadi
 Revana Wedding Venue
 ```
 
@@ -300,7 +300,7 @@ Source copy:
 
 ```text
 Ceremony
-ST. ANTHONY CHURCH, MAADI
+ST. ANTHONY CHURCH, ZAHRAA EL MAADI
 7 PM, MAIN CHURCH
 ```
 
