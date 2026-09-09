@@ -27,6 +27,11 @@ const END_UTC = '20261001T210000Z';
    the English event treated the Arabic file as the same event and kept the
    English title, so the Arabic entry appeared to do nothing at all. Distinct
    UIDs mean each file adds the event in its own language. */
+/* These keep the youssefg7 host after the move to youssef-lara.github.io, which
+   looks stale but is deliberate. A UID is an opaque identity, not a link, and it
+   is the only thing a calendar uses to recognise an event it already holds.
+   Rewriting it would make every guest who has already added the invitation
+   receive a second, unrelated entry rather than an update to the first. */
 const UID_EN = 'engagement-2026-10-01@youssefg7.github.io';
 const UID_AR = 'engagement-2026-10-01-ar@youssefg7.github.io';
 const STAMP = '20260908T000000Z';
@@ -53,7 +58,7 @@ const editions = [
       'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.\n\n'
       + `Church location: ${CHURCH_MAPS_URL}`,
     location: 'St. Anthony Church, Zahraa El Maadi, Cairo, Egypt',
-    url: 'https://youssefg7.github.io/engagement/',
+    url: 'https://youssef-lara.github.io/',
   },
   {
     file: 'assets/engagement-ar.ics',
@@ -64,7 +69,7 @@ const editions = [
       'الخطوبة في كنيسة الأنبا أنطونيوس بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال في قاعة ريفانا.\n\n'
       + `مكان الكنيسة: ${CHURCH_MAPS_URL}`,
     location: 'كنيسة الأنبا أنطونيوس، بزهراء المعادي، القاهرة، مصر',
-    url: 'https://youssefg7.github.io/engagement/ar/',
+    url: 'https://youssef-lara.github.io/ar/',
   },
 ];
 
