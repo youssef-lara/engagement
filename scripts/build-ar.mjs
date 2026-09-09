@@ -351,6 +351,11 @@ sub(
   /<meta\n      property="og:image:alt"\n      content="Youssef and Lara written in script inside a pink oval frame, surrounded by watercolour flowers and hummingbirds"\n    \/>/,
   `<meta\n      property="og:image:alt"\n      content="${esc(copy.head.ogImageAlt)}"\n    />`
 );
+/* Each edition's link preview shows its own opening page. The Arabic card is
+   composed by scripts/build-social-ar.py, which draws the Arabic lettering from
+   the font's outlines because the names and strapline are not raster artwork. */
+sub('og:image', /og-invitation\.jpg/, 'og-invitation-ar.jpg');
+
 sub(
   'apple web app title',
   /<meta name="apple-mobile-web-app-title" content="Youssef &amp; Lara" \/>/,
