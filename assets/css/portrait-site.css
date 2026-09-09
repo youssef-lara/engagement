@@ -155,7 +155,7 @@ body { overflow-x: clip; }
 .rsvp-page { aspect-ratio: auto; }
 .rsvp-scene {
   position: relative; top: auto; transform: none; aspect-ratio: auto;
-  min-height: 153cqw; padding: 20cqw 0 14cqw;
+  min-height: 153cqw; padding: 15.5cqw 0 9.4cqw;
 }
 .rsvp-floral { position: absolute; height: auto; pointer-events: none; }
 .rsvp-floral--562 { top: 0; left: 0; width: 44.769%; }
@@ -173,7 +173,7 @@ body { overflow-x: clip; }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin: 0 0 3.4cqw;
+  margin: 0 0 2.6cqw;
 }
 .rsvp-heading__letter { display: block; height: auto; }
 .rsvp-heading__letter--r { width: 9.19cqw; }
@@ -183,7 +183,7 @@ body { overflow-x: clip; }
 .rsvp-heading__letter--s { margin-bottom: 1.91cqw; }
 
 .rsvp-paper {
-  position: relative; z-index: 1; width: 80%; margin: 0 auto;
+  position: relative; z-index: 1; width: 84%; margin: 0 auto;
   /* The lace is the frame, not a hairline: give the border-image room to draw
      the scallops at close to their own scale. */
   border: 7.2cqw solid transparent;
@@ -191,7 +191,7 @@ body { overflow-x: clip; }
   padding: 3.5cqw 4cqw 4.5cqw; background: #e8e6e3 padding-box;
   color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
 }
-.reply-note { display: block; width: 76%; height: auto; margin: 0 auto 3cqw; }
+.reply-note { display: block; width: 66%; height: auto; margin: 0 auto 2.4cqw; }
 .reply-excited,
 .reply-deadline,
 .reply-signoff {
@@ -200,21 +200,38 @@ body { overflow-x: clip; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.reply-excited { max-width: 30ch; font-size: 13px; line-height: 1.65; }
-.reply-deadline { margin: 2.6cqw 0 4.4cqw; font-size: 12.5px; line-height: 1.5; }
-.reply-signoff { margin-top: 5cqw; font-size: 12.5px; line-height: 1.9; }
+.reply-excited { max-width: 32ch; font-size: 13px; line-height: 1.5; }
+.reply-deadline { margin: 2.2cqw 0 3.6cqw; font-size: 12.5px; line-height: 1.4; }
+.reply-signoff { margin-top: 4cqw; font-size: 12.5px; line-height: 1.6; }
 .rsvp-form { font-size: 15px; line-height: 1.5; }
 .rsvp-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
-.rsvp-form__field { margin: 0 0 10px; }
-.rsvp-form label, .rsvp-form legend { display: block; margin-bottom: 6px; font-size: 15px; font-weight: 600; }
+.rsvp-form__field { margin: 0 0 8px; }
+.rsvp-form label, .rsvp-form legend { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 600; }
 .rsvp-form input[type="text"], .rsvp-form textarea { width: 100%; min-height: 44px; padding: 8px 4px; border: 0; border-bottom: 1px solid #24181a; border-radius: 0; background: transparent; color: inherit; font: 16px/1.4 'Montserrat',sans-serif; }
-.rsvp-form textarea { min-height: 72px; resize: vertical; }
-.rsvp-form .rsvp-form__options { margin-bottom: 18px; }
-.rsvp-form .rsvp-form__choice { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; font-weight: 400; }
-.rsvp-form__choice input { accent-color: #be435d; width: 17px; height: 17px; }
+.rsvp-form textarea { min-height: 58px; resize: vertical; }
+.rsvp-form .rsvp-form__options { margin-bottom: 14px; }
+/* Two thumb-sized pills on one row: 44px of target each, 44px shorter than the
+   stacked radio rows they replace, and the choice reads at a glance. Real radios
+   stay in the markup, hidden but focusable, so keyboard and screen readers are
+   unchanged. */
+.rsvp-form__pills { display: flex; gap: 8px; }
+.rsvp-form .rsvp-form__choice {
+  flex: 1 1 0; display: flex; align-items: center; justify-content: center;
+  min-height: 44px; margin: 0; padding: 5px 6px;
+  border: 1px solid #cdbfba; border-radius: 999px; background: #fdfcfb;
+  font-size: 13.5px; font-weight: 500; line-height: 1.25; text-align: center;
+  cursor: pointer; transition: background-color .15s ease, border-color .15s ease;
+}
+.rsvp-form__choice input {
+  position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;
+}
+/* The span rule carries the checked state everywhere; :has() adds the fill. */
+.rsvp-form__choice input:checked + span { font-weight: 700; color: #7f2638; }
+.rsvp-form__choice:has(input:checked) { border-color: #e0879c; background: #f8c3ce; }
+.rsvp-form__choice:has(input:focus-visible) { outline: 3px solid #be435d; outline-offset: 3px; }
 .rsvp-paper .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
 .rsvp-paper .button:disabled { opacity: .65; cursor: wait; }
-.rsvp-form__status, .rsvp-form__backup { margin: 3cqw 0 0; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+.rsvp-form__status, .rsvp-form__backup { margin: 2.4cqw 0 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .rsvp-form__status[data-tone="error"] { color: #a3384c; }
 .rsvp-form__status[data-tone="success"] { color: #465332; font-weight: 600; }
 .rsvp-form__guard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

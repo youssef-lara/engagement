@@ -4,10 +4,11 @@
                 <p class="rsvp-form__field"><label for="full-name">Full name</label><input id="full-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></p>
                 <fieldset class="rsvp-form__options">
                   <legend>Will you attend?</legend>
-                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Attending" required> Joyfully attending</label>
-                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Not attending"> Unable to attend</label>
+                  <div class="rsvp-form__pills">
+                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Attending" required><span>Joyfully attending</span></label>
+                  <label class="rsvp-form__choice"><input name="attendance" type="radio" value="Not attending"><span>Unable to attend</span></label>
                 </fieldset>
-                <p class="rsvp-form__field"><label for="message">Optional message for the couple</label><textarea id="message" name="message" maxlength="500"></textarea></p>
+                <p class="rsvp-form__field"><label for="message">Optional note</label><textarea id="message" name="message" maxlength="500"></textarea></p>
                 <p class="rsvp-form__guard" aria-hidden="true"><label for="website">Website</label><input id="website" name="_honey" type="text" autocomplete="off" tabindex="-1"></p>
                 <input name="language" type="hidden" value="en">
                 <input name="submitted_at" type="hidden">
