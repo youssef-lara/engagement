@@ -326,14 +326,14 @@ sub('hreflang en', /<link rel="alternate" hreflang="en" href="\.\/" \/>/, '<link
 sub('hreflang ar', /<link rel="alternate" hreflang="ar" href="\.\/ar\/" \/>/, '<link rel="alternate" hreflang="ar" href="./" />');
 sub(
   'canonical',
-  /<link rel="canonical" href="https:\/\/youssefg7\.github\.io\/engagement\/" \/>/,
+  /<link rel="canonical" href="https:\/\/youssef-lara\.github\.io\/engagement\/" \/>/,
   `<link rel="canonical" href="${copy.head.canonical}" />`
 );
 
 sub('og:locale', /<meta property="og:locale" content="en" \/>/, `<meta property="og:locale" content="${copy.head.ogLocale}" />`);
 sub(
   'og:url',
-  /<meta property="og:url" content="https:\/\/youssefg7\.github\.io\/engagement\/" \/>/,
+  /<meta property="og:url" content="https:\/\/youssef-lara\.github\.io\/engagement\/" \/>/,
   `<meta property="og:url" content="${copy.head.canonical}" />`
 );
 sub(

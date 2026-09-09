@@ -32,7 +32,7 @@ The rows named `Codex integration check`, `Codex production Worker check`, `Code
 - The spreadsheet is shared as Editor only with `engagement-rsvp-writer@engagement-rsvp-507313.iam.gserviceaccount.com` and the intended owners.
 - Guest responses are not stored in GitHub, browser storage, query strings, or analytics.
 
-The Worker accepts requests only from `https://youssefg7.github.io`, validates lengths and attendance values, treats the hidden `_honey` field as a spam trap, and writes cell values as raw data. Text beginning with a spreadsheet formula character is escaped before storage.
+The Worker accepts requests only from the origins listed in `ALLOWED_ORIGINS` (`https://youssef-lara.github.io` for the live site; the former `https://youssefg7.github.io` stays listed only until the move is verified, and can then be dropped), validates lengths and attendance values, treats the hidden `_honey` field as a spam trap, and writes cell values as raw data. Text beginning with a spreadsheet formula character is escaped before storage.
 
 ## Deploy Worker changes
 

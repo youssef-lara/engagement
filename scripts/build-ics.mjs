@@ -27,8 +27,13 @@ const END_UTC = '20261001T210000Z';
    the English event treated the Arabic file as the same event and kept the
    English title, so the Arabic entry appeared to do nothing at all. Distinct
    UIDs mean each file adds the event in its own language. */
-const UID_EN = 'engagement-2026-10-01@youssefg7.github.io';
-const UID_AR = 'engagement-2026-10-01-ar@youssefg7.github.io';
+/* The host here is an identifier rather than a link, so it is never fetched. It
+   was safe to move to the new one only because the invitation had not been sent
+   to anyone yet: a calendar recognises an event it already holds by UID alone,
+   so changing this after guests had added the event would give them a second,
+   unrelated entry instead of an update. Treat it as frozen from now on. */
+const UID_EN = 'engagement-2026-10-01@youssef-lara.github.io';
+const UID_AR = 'engagement-2026-10-01-ar@youssef-lara.github.io';
 const STAMP = '20260908T000000Z';
 
 /* The same query the page's venue link opens, so the calendar entry and the
@@ -53,7 +58,7 @@ const editions = [
       'Ceremony at St. Anthony Church, Zahraa El Maadi at 7 PM, then the reception at Revana Wedding Venue.\n\n'
       + `Church location: ${CHURCH_MAPS_URL}`,
     location: 'St. Anthony Church, Zahraa El Maadi, Cairo, Egypt',
-    url: 'https://youssefg7.github.io/engagement/',
+    url: 'https://youssef-lara.github.io/engagement/',
   },
   {
     file: 'assets/engagement-ar.ics',
@@ -64,7 +69,7 @@ const editions = [
       'الخطوبة في كنيسة الأنبا أنطونيوس بزهراء المعادي الساعة ٧ مساءً، وبعدها الاحتفال في قاعة ريفانا.\n\n'
       + `مكان الكنيسة: ${CHURCH_MAPS_URL}`,
     location: 'كنيسة الأنبا أنطونيوس، بزهراء المعادي، القاهرة، مصر',
-    url: 'https://youssefg7.github.io/engagement/ar/',
+    url: 'https://youssef-lara.github.io/engagement/ar/',
   },
 ];
 

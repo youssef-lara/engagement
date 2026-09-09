@@ -4,7 +4,7 @@ PRODID:-//Youssef and Lara//Engagement//AR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:engagement-2026-10-01-ar@youssefg7.github.io
+UID:engagement-2026-10-01-ar@youssef-lara.github.io
 DTSTAMP:20260908T000000Z
 DTSTART:20261001T160000Z
 DTEND:20261001T210000Z
@@ -16,6 +16,6 @@ DESCRIPTION:الخطوبة في كنيسة الأنبا أنطونيوس ب
  ch%2C%20Zahraa%20El%20Maadi%2C%20Cairo%2C%20Egypt
 LOCATION:كنيسة الأنبا أنطونيوس، بزهراء المعا
  دي، القاهرة، مصر
-URL:https://youssefg7.github.io/engagement/ar/
+URL:https://youssef-lara.github.io/engagement/ar/
 END:VEVENT
 END:VCALENDAR
