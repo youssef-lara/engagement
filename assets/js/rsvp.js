@@ -67,6 +67,20 @@
     form.setAttribute("aria-busy", "false");
     backup.hidden = true;
     setStatus(copy.success, "success");
+
+    // A reply is the one moment a guest has just committed to the date, so hand
+    // them the details and a calendar entry instead of an empty card. The
+    // deadline is no longer of any use to them.
+    const confirmed = document.querySelector("[data-rsvp-confirmed]");
+    const deadline = document.querySelector(".reply-deadline");
+
+    if (deadline) {
+      deadline.hidden = true;
+    }
+
+    if (confirmed) {
+      confirmed.hidden = false;
+    }
   };
 
   if (!endpointIsReady) {

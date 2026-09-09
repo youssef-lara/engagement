@@ -169,13 +169,42 @@ body { overflow-x: clip; }
 .rsvp-form .rsvp-form__options { margin-bottom: 18px; }
 .rsvp-form .rsvp-form__choice { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; font-weight: 400; }
 .rsvp-form__choice input { accent-color: #be435d; width: 17px; height: 17px; }
-.rsvp-form .button { min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
-.rsvp-form .button:disabled { opacity: .65; cursor: wait; }
+.rsvp-paper .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+.rsvp-paper .button:disabled { opacity: .65; cursor: wait; }
 .rsvp-form__status, .rsvp-form__backup { margin: 3cqw 0 0; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
 .rsvp-form__status[data-tone="error"] { color: #a3384c; }
 .rsvp-form__status[data-tone="success"] { color: #465332; font-weight: 600; }
 .rsvp-form__guard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .rsvp-form.is-complete fieldset { display: none; }
+
+/* After a reply: the card kept the deadline and collapsed to one line of text.
+   It now carries what a guest who has just said yes actually needs. */
+.rsvp-form__status[data-tone="success"] { margin-top: 0; text-align: center; }
+.reply-confirmed { margin-top: 4cqw; }
+.reply-summary {
+  margin: 0;
+  padding: 4cqw 0 0;
+  border-top: 1px solid rgba(36, 24, 26, 0.18);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+.reply-summary dt {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b5b5e;
+}
+.reply-summary dd { margin: 1px 0 3cqw; }
+.reply-summary dd:last-of-type { margin-bottom: 0; }
+.reply-calendar {
+  display: block;
+  width: fit-content;
+  margin: 4.5cqw auto 0;
+  text-align: center;
+  text-decoration: none;
+}
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid #be435d; outline-offset: 3px; }
 .no-script-reply { text-align: center; }
