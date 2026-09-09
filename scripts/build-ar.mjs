@@ -779,6 +779,10 @@ sub(
   `                  ${esc(copy.rsvp.noscriptBefore)}\n                  <a\n                    href="https://forms.gle/daqf2ug4TypLtKwH8"\n                    rel="external"\n                    target="_blank"\n                    >${esc(copy.rsvp.backupLink)}</a\n                  >.`
 );
 sub('add to calendar', /              Add to calendar<\/a\n            >/, `              ${esc(copy.rsvp.addToCalendar)}</a\n            >`);
+/* The Arabic edition hands over an Arabic calendar entry: same instant and the
+   same UID, Arabic title, description and venue. Both files come out of
+   scripts/build-ics.mjs. */
+sub('calendar file', /href="assets\/engagement\.ics"/, 'href="assets/engagement-ar.ics"');
 
 sub(
   'confirmed summary',

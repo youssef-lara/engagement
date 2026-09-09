@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Youssef and Lara//Engagement//AR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:engagement-2026-10-01@youssefg7.github.io
+DTSTAMP:20260908T000000Z
+DTSTART:20261001T160000Z
+DTEND:20261001T210000Z
+SUMMARY:خطوبة يوسف ولارا
+DESCRIPTION:الخطوبة في كنيسة الأنبا أنطونيوس ب
+ المعادي الساعة ٧ مساءً، وبعدها الاحتفال 
+ في قاعة ريفانا.
+LOCATION:كنيسة الأنبا أنطونيوس، المعادي، الق
+ اهرة، مصر
+URL:https://youssefg7.github.io/engagement/ar/
+END:VEVENT
+END:VCALENDAR
