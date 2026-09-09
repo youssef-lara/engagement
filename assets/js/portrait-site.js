@@ -48,10 +48,17 @@
   });
 
   const target = new Date('2026-10-01T19:00:00+03:00').getTime();
+  // The Arabic edition writes its figures in Arabic-Indic numerals, so the two
+  // digits come from Intl rather than from padding an ASCII string. English is
+  // unchanged: the Latin formatter pads to the same two places.
+  const digits = new Intl.NumberFormat(
+    document.body.dataset.language === 'ar' ? 'ar-EG-u-nu-arab' : 'en',
+    { minimumIntegerDigits: 2, useGrouping: false }
+  );
   function tick() {
     const remaining = Math.max(0, target - Date.now());
     const values = [Math.floor(remaining / 86400000), Math.floor(remaining / 3600000) % 24, Math.floor(remaining / 60000) % 60, Math.floor(remaining / 1000) % 60];
-    ['cdD','cdH','cdM','cdS'].forEach((id, i) => { document.getElementById(id).textContent = String(values[i]).padStart(2,'0'); });
+    ['cdD','cdH','cdM','cdS'].forEach((id, i) => { const cell = document.getElementById(id); if (cell) cell.textContent = digits.format(values[i]); });
   }
   tick();
   setInterval(tick, 1000);

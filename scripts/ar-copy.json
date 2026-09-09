@@ -1,0 +1,171 @@
+{
+  "_note": [
+    "Egyptian-Arabic copy deck for the /ar route. Edit wording here, then run",
+    "`node scripts/build-ar.mjs` to regenerate ar/index.html.",
+    "Tone: Egyptian colloquial-leaning and warm, but still fit for an invitation.",
+    "Plural verbs (يتشرفوا) rather than MSA dual (يتشرفان); Arabic-Indic numerals.",
+    "Numbers stay Arabic-Indic (٠١٢٣٤٥٦٧٨٩) to match the rest of the page."
+  ],
+  "head": {
+    "lang": "ar",
+    "dir": "rtl",
+    "title": "خطوبة يوسف ولارا",
+    "description": "دعوة خطوبة يوسف ولارا يوم ١ أكتوبر ٢٠٢٦، كنيسة الأنبا أنطونيوس بالمعادي، وبعدها قاعة ريفانا.",
+    "ogLocale": "ar_EG",
+    "ogTitle": "يوسف ولارا بيتخطبوا",
+    "ogDescription": "١ أكتوبر ٢٠٢٦ · كنيسة الأنبا أنطونيوس، المعادي، وبعدها قاعة ريفانا. برجاء تأكيد الحضور قبل ١٥ سبتمبر.",
+    "ogImageAlt": "اسم يوسف ولارا بخط اليد جوه إطار بيضاوي وردي، وحواليه ورد بالألوان المائية وطيور طنانة",
+    "appleTitle": "يوسف ولارا",
+    "canonical": "https://youssefg7.github.io/engagement/ar/"
+  },
+  "skipLink": "انتقل إلى الدعوة",
+  "opening": {
+    "strapline": "إحنا بنتخطب",
+    "youssef": "يوسف",
+    "lara": "لارا",
+    "connector": "و",
+    "sceneLabel": "البداية",
+    "altBird": "طائر طنان",
+    "hiddenHeading": "يوسف ولارا",
+    "hiddenBody": "إحنا بنتخطب."
+  },
+  "invitation": {
+    "sceneLabel": "الدعوة",
+    "orangeTitle": [
+      "يوسف و",
+      "لارا"
+    ],
+    "cardYoussef": "يوسف جورج",
+    "cardAnd": "و",
+    "cardLara": "لارا سميح",
+    "cardRequest": [
+      "يتشرفوا بدعوتكم",
+      "لمشاركتهم فرحة",
+      "الخطوبة"
+    ],
+    "cardDate": "٠١.١٠.٢٠٢٦",
+    "cardChurch": "كنيسة الأنبا أنطونيوس، المعادي",
+    "cardVenue": "قاعة ريفانا",
+    "replayLabel": "شغّل فتح الظرف تاني",
+    "hiddenHeading": "إنتم مدعوين!",
+    "envelopeLettering": [
+      "إنتم",
+      "مدعوين!"
+    ],
+    "altEnvelope": "ظرف الدعوة",
+    "altSeal": "خاتم شمع أحمر"
+  },
+  "date": {
+    "sceneLabel": "الموعد",
+    "title": "الموعد",
+    "calendarHeading": "أكتوبر ٢٠٢٦",
+    "dateLine": "الخميس ١ أكتوبر ٢٠٢٦",
+    "_calendarDaysNote": "Single-letter weekday initials, Sunday first. These are the CLDR narrow names for ar-EG.",
+    "calendarDays": [
+      "ح",
+      "ن",
+      "ث",
+      "ر",
+      "خ",
+      "ج",
+      "س"
+    ],
+    "countdownLabel": "الوقت الباقي للخطوبة",
+    "countdownUnits": {
+      "days": "أيام",
+      "hours": "ساعات",
+      "minutes": "دقائق",
+      "seconds": "ثواني"
+    },
+    "hiddenHeading": "الموعد",
+    "hiddenBody": "الخميس ١ أكتوبر ٢٠٢٦."
+  },
+  "ceremony": {
+    "sceneLabel": "الخطوبة",
+    "title": "الخطوبة",
+    "venue": "كنيسة الأنبا أنطونيوس، المعادي",
+    "time": "٧ مساءً، الكنيسة الكبرى",
+    "mapTitle": "خريطة كنيسة الخطوبة",
+    "mapLink": "افتح كنيسة الأنبا أنطونيوس، المعادي على خرايط جوجل",
+    "hiddenHeading": "الخطوبة",
+    "hiddenBody": "كنيسة الأنبا أنطونيوس، المعادي. ٧ مساءً، الكنيسة الكبرى."
+  },
+  "receptionBoat": {
+    "sceneLabel": "الاحتفال — بالمركب",
+    "title": "الاحتفال",
+    "venue": "قاعة ريفانا",
+    "_directionsNote": "Two lines maximum. The travel mode sits at the end of the second line.",
+    "directions": [
+      "اللوكيشن ده لو",
+      "حتوصلوا للقاعة بالمركب"
+    ],
+    "mapTitle": "خريطة الوصول بالمركب",
+    "mapLink": "افتح مكان الوصول بالمركب لقاعة ريفانا على خرايط جوجل",
+    "hiddenHeading": "الاحتفال — بالمركب",
+    "hiddenBody": "قاعة ريفانا. اللوكيشن ده لو حتوصلوا للقاعة بالمركب."
+  },
+  "receptionCar": {
+    "sceneLabel": "الاحتفال — بالعربية",
+    "title": "الاحتفال",
+    "venue": "قاعة ريفانا",
+    "_directionsNote": "Two lines maximum. The travel mode sits at the end of the second line.",
+    "directions": [
+      "اللوكيشن ده لو",
+      "حتوصلوا للقاعة بالعربية"
+    ],
+    "mapTitle": "خريطة الوصول بالعربية",
+    "mapLink": "افتح طريق العربية لقاعة ريفانا على خرايط جوجل",
+    "hiddenHeading": "الاحتفال — بالعربية",
+    "hiddenBody": "قاعة ريفانا. اللوكيشن ده لو حتوصلوا للقاعة بالعربية."
+  },
+  "dressCode": {
+    "sceneLabel": "الزي المناسب",
+    "titleFirst": "الزي",
+    "titleSecond": "المناسب",
+    "ladies": "للسيدات",
+    "men": "للرجال",
+    "hiddenHeading": "الزي المناسب",
+    "hiddenBody": "فساتين رسمية للسيدات. بدل رسمية للرجال."
+  },
+  "rsvp": {
+    "sceneLabel": "تأكيد الحضور",
+    "heading": "تأكيد الحضور",
+    "note": "طمّنونا إنكم جايين!",
+    "excited": "مستنينكم تفرحوا معانا في اللحظة الحلوة دي!",
+    "deadlineBefore": "منتظرين ردكم قبل",
+    "deadlineDate": "١٥.٠٩.٢٠٢٦",
+    "formLegend": "بيانات تأكيد الحضور",
+    "nameLabel": "الاسم بالكامل",
+    "attendLegend": "حتشرفونا؟",
+    "choiceYes": "أكيد جايين",
+    "choiceNo": "مش حنقدر نيجي",
+    "messageLabel": "رسالة (اختياري)",
+    "honeypotLabel": "الموقع الإلكتروني",
+    "submit": "تأكيد الحضور",
+    "statusPreparing": "بنحضّر فورم الرد…",
+    "backupBefore": "لحد ما الردود أونلاين تشتغل، من فضلكم",
+    "backupLink": "استخدموا فورم تأكيد الحضور",
+    "noscriptBefore": "الرد من الصفحة محتاج جافاسكريبت. من فضلكم",
+    "addToCalendar": "ضيفوا الموعد للتقويم",
+    "confirmed": [
+      {
+        "term": "الموعد",
+        "value": "الخميس ١ أكتوبر ٢٠٢٦، ٧ مساءً"
+      },
+      {
+        "term": "الخطوبة",
+        "value": "كنيسة الأنبا أنطونيوس، المعادي"
+      },
+      {
+        "term": "الاحتفال",
+        "value": "قاعة ريفانا"
+      }
+    ],
+    "signoff": [
+      "بكل الحب،",
+      "يوسف ولارا"
+    ],
+    "noScriptReplyBefore": "للرد،",
+    "noScriptReplyLink": "افتحوا فورم تأكيد الحضور"
+  }
+}

@@ -1,0 +1,264 @@
+/* Arabic text layer for the portrait edition.
+   Loads after portrait-site.css, so single-class rules here win on order.
+
+   The composition is not mirrored. Every floral, the envelope, the calendar
+   strip, the three map snapshots and the dress and suit photographs stay at the
+   exact percentages the English page uses, because several of them have text and
+   imagery baked into the pixels and would read backwards if flipped. What
+   changes is the lettering: the traced English outlines and the Latin-only
+   Poppins subset are replaced by live Arabic text, laid out right to left inside
+   the same boxes.
+
+   Three source rows put a small mark before the words (a church, a clock and a
+   calendar). Those rows are rebuilt as flex rows in `direction: rtl`, which
+   places the mark on the right — the side an Arabic line starts from — without
+   moving the row off the axis the artwork above it sits on. */
+
+/* ------------------------------------------------------------- lettering */
+
+/* Stands in for the source's `.letters` runs. The box carries the geometry and
+   the text is centred or edge-aligned inside it by the inline
+   `justify-content`, so a line that runs longer or shorter than the English one
+   grows about its own anchor instead of drifting sideways. */
+.ar-line,
+.ar-row {
+  display: flex;
+  align-items: center;
+  direction: rtl;
+  white-space: nowrap;
+  font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+  font-weight: 400;
+  color: #000;
+  line-height: 1;
+  /* Arabic joins its letters, so the tracking the Latin lettering was fitted
+     with would pull the words apart. */
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.ar-row { gap: 1.35cqw; }
+.ar-row__text { display: block; }
+
+/* The marks keep the proportions they have in the source composition: their
+   width in scene percent maps straight to cqw, and their height converts
+   through the artboard ratio (767.625 / 502.1245). */
+.ar-icon { flex: none; display: block; }
+.ar-icon--calendar { width: 4.5785cqw; height: 4.5773cqw; }
+.ar-icon--clock { width: 4.1802cqw; height: 4.1798cqw; }
+/* Three raster pieces that only line up at fixed offsets, so the group is a box
+   of its own proportions with each piece placed inside it by percentage. */
+.ar-icon--church { position: relative; width: 7.3656cqw; height: 7.868cqw; }
+.ar-icon--church img { position: absolute; display: block; }
+
+/* ------------------------------------------------------- calendar grid */
+
+/* The source calendar is a raster with English weekday names and Latin numerals
+   in it, so the Arabic route sets the whole grid as live text on the same cell
+   centres and keeps only the hand-drawn ring as artwork. Sharp at any pixel
+   density, and the month is editable rather than baked in. */
+.ar-cal { position: absolute; }
+.ar-cal__day,
+.ar-cal__num {
+  position: absolute;
+  /* The cell centres are points, so each label is centred on its own point.
+     Only the container animates, so these transforms are never overwritten. */
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+  color: #000;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.ar-cal__day { font-size: 2cqw; font-weight: 500; }
+/* Arabic-Indic figures still run left to right inside a right-to-left line, so
+   the pair is isolated to keep ١٠ from reading as ٠١. */
+.ar-cal__num {
+  font-size: 2.25cqw;
+  font-weight: 400;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.ar-cal__ring { position: absolute; display: block; }
+
+/* --------------------------------------------------------- script titles */
+
+/* Where the English page shows a traced outline of a script face, the Arabic
+   page sets the word in Aref Ruqaa: a calligraphic Ruqaa hand, which carries the
+   same written-by-hand quality. Colour matches the traced outlines' #111. */
+.ar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: rtl;
+  white-space: nowrap;
+  font-family: 'Aref Ruqaa Arabic', 'Noto Naskh Arabic', serif;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.05;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+/* The strapline follows the top of the oval, so it is set on a curved path. The
+   viewBox is 346 x 100, the same 3.46 ratio as its box, so stretching the SVG to
+   fill does not distort the glyphs. */
+.ar-strapline { overflow: visible; }
+.ar-strapline path { fill: none; }
+/* The English line is letter-spaced small caps, which is how it spans the whole
+   arc. Tracking would break the joins between Arabic letters, so the line is set
+   a little larger and the two words are pushed apart with word-spacing instead:
+   that only stretches the space, leaving every join intact. */
+.ar-strapline text {
+  font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  word-spacing: 14px;
+  fill: #111;
+}
+
+/* ------------------------------------------------------- envelope + card */
+
+/* "You're Invited!" is script artwork on the closed envelope; Arabic sets it as
+   two lines the way the artwork stacks them. Keeps the class the envelope
+   choreography animates. */
+.envelope-scene p.ar-envelope-text {
+  margin: 0;
+  direction: rtl;
+  font-family: 'Aref Ruqaa Arabic', serif;
+  font-size: 7.4cqw;
+  font-weight: 700;
+  line-height: 1.16;
+  text-align: center;
+  color: #000;
+}
+
+/* The source hides this live text and shows an orange raster of the same two
+   words. There is no Arabic raster, so the text is shown instead and inherits
+   the animation the raster had. */
+/* The live text carries the source's own unused coordinates, which sit higher
+   and narrower than the raster that was actually shown. It takes the raster's
+   box instead, so the Arabic lands where the English artwork sat. */
+.orange-couple-title {
+  display: block !important;
+  left: 21.8633% !important;
+  top: 15.4893% !important;
+  width: 37.1013% !important;
+  direction: rtl;
+  font-family: 'Aref Ruqaa Arabic', serif !important;
+  font-size: clamp(24px, 7.1cqw, 44px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Ballet and Cormorant Garamond have no Arabic glyphs. The names take the
+   calligraphic face, the supporting copy takes naskh. Both render larger than
+   the Latin faces at a given size, so the sizes come down to keep the lines
+   inside the pink card. */
+.card-youssef,
+.card-and-v25,
+.card-lara,
+.card-date-v25 {
+  font-family: 'Aref Ruqaa Arabic', serif !important;
+  letter-spacing: 0 !important;
+}
+.card-youssef { font-size: 3.6cqw !important; }
+.card-and-v25 { font-size: 2.6cqw !important; }
+.card-lara { font-size: 3.75cqw !important; }
+.card-date-v25 { font-size: 3.5cqw !important; }
+
+.card-request-v25,
+.card-church-v25,
+.card-venue-v25 {
+  font-family: 'Noto Naskh Arabic', serif !important;
+  /* Tracking breaks the joins between Arabic letters. */
+  letter-spacing: 0 !important;
+}
+.card-request-v25 { font-size: 2.5cqw !important; line-height: 1.45 !important; }
+.card-church-v25,
+.card-venue-v25 { font-size: 2.1cqw !important; line-height: 1.25 !important; }
+
+/* ------------------------------------------------------------- countdown */
+
+/* Impact carries no Arabic-Indic digits, so the numerals take the same
+   geometric face as the lettering. It is a wider design than Impact, so the
+   figures come down to keep four units and three colons on one row. */
+.num,
+.colon {
+  font-family: 'Noto Kufi Arabic', system-ui, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.num { font-size: 6.6cqw; }
+.colon { font-size: 5.6cqw; }
+.lab {
+  font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+/* Days first, which under `dir="rtl"` puts them on the right. The grid already
+   follows the document direction, so only the digits need pinning left-to-right
+   so that ٠٥ does not read as ٥٠. */
+.num { direction: ltr; unicode-bidi: isolate; }
+
+/* ------------------------------------------------------------ reply page */
+
+.rsvp-paper { font-family: 'Noto Naskh Arabic', serif; }
+
+/* Both of these were images sized in cqw; as text they size themselves. */
+.rsvp-heading__word {
+  width: auto;
+  height: auto;
+  font-size: 11.5cqw;
+  line-height: 1.2;
+}
+p.reply-note {
+  width: auto;
+  margin: 0 auto 2.4cqw;
+  font-size: 7.2cqw;
+  line-height: 1.3;
+  text-align: center;
+  color: #111;
+}
+
+/* Uppercase does nothing to Arabic and the tracking breaks its joins. */
+.reply-excited,
+.reply-deadline,
+.reply-signoff,
+.reply-summary dt,
+.rsvp-paper .button {
+  text-transform: none;
+  letter-spacing: 0;
+}
+/* The shared sheet caps this line at 32ch, which is measured on Latin figures
+   and leaves the Arabic sentence breaking one word onto a line of its own. It
+   takes the paper's own width instead. */
+.reply-excited { max-width: none; font-size: 13.5px; line-height: 1.7; }
+.reply-deadline { font-size: 13px; line-height: 1.6; }
+.reply-signoff { font-size: 13px; line-height: 1.8; }
+
+.rsvp-form,
+.rsvp-form label,
+.rsvp-form legend,
+.rsvp-form input[type='text'],
+.rsvp-form textarea,
+.rsvp-paper .button {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+/* Naskh sits lower in its em box than Montserrat, so the ruled fields need a
+   little more room to stop descenders touching the rule. */
+.rsvp-form input[type='text'],
+.rsvp-form textarea { padding-bottom: 10px; line-height: 1.6; }
+.rsvp-form .rsvp-form__choice { font-size: 13px; }
+/* The tick box leads the label, so its spacing has to follow the text
+   direction rather than sit on a fixed side. */
+.rsvp-form__choice span::before {
+  margin-right: 0;
+  margin-inline-end: 6px;
+}
+.reply-summary dt { font-size: 12px; }
+.reply-summary dd { font-size: 14px; }
+
+/* ------------------------------------------------------------------ misc */
+
+/* The skip link is pinned to the left in the shared sheet; on an RTL page it
+   belongs on the side the reader starts from. */
+.skip-link { left: auto; right: 1rem; }
