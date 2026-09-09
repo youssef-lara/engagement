@@ -14,26 +14,28 @@ import { execFileSync } from 'node:child_process';
 const root = resolve(import.meta.dirname, '..');
 const optimized = resolve(root, 'assets/images/optimized');
 
-// Every route and stylesheet that can name an image, so a copy is never missed.
-const documents = ['index.html', 'ar/index.html'];
-const stylesheets = ['assets/css/site.css', 'assets/css/portrait-site.css', 'assets/css/composition.css'];
-
+// The extracted-asset manifest is the source list, not the markup: once the
+// pages point at the delivery copies, reading the markup would only rediscover
+// the copies themselves and the run would stop being repeatable. Working from
+// the manifest also covers artwork a page has not used yet.
 const sources = new Set();
-for (const file of documents) {
-  if (!existsSync(resolve(root, file))) continue;
-  const html = readFileSync(resolve(root, file), 'utf8');
-  for (const match of html.matchAll(/(?:src|data-src|data-fallback)="\.{0,2}\/?(assets\/images\/[^" ]+\.(?:png|svg))"/g)) {
-    sources.add(match[1]);
-  }
+const manifest = JSON.parse(readFileSync(resolve(root, 'assets/images/manifest.json'), 'utf8'));
+for (const asset of manifest.elements) {
+  if (/\.(?:png|svg)$/.test(asset.assetPath || '')) sources.add(asset.assetPath);
 }
+// Stylesheets and the Arabic route can still name artwork of their own.
+const stylesheets = ['assets/css/site.css', 'assets/css/portrait-site.css', 'assets/css/composition.css'];
 for (const file of stylesheets) {
   if (!existsSync(resolve(root, file))) continue;
   const css = readFileSync(resolve(root, file), 'utf8');
   for (const match of css.matchAll(/\.\.\/images\/([^" )]+\.(?:png|svg))/g)) sources.add(`assets/images/${match[1]}`);
 }
-// Referenced from the reply card's border-image and background in either route.
-sources.add('assets/images/rsvp/rsvp-lace-frame-8f2dca09.png');
-sources.add('assets/images/rsvp/rsvp-card-background-eefcd42d.png');
+if (existsSync(resolve(root, 'ar/index.html'))) {
+  const html = readFileSync(resolve(root, 'ar/index.html'), 'utf8');
+  for (const match of html.matchAll(/(?:src|data-src|data-fallback)="\.{0,2}\/?(assets\/images\/[^" ]+\.(?:png|svg))"/g)) {
+    sources.add(match[1]);
+  }
+}
 
 // Displayed far smaller than they were exported.
 const resizes = [

@@ -119,28 +119,59 @@ body { overflow-x: clip; }
 .rsvp-floral--561 { top: 0; right: 0; width: 34.835%; }
 .rsvp-floral--559 { bottom: 0; left: 0; width: 32.362%; }
 .rsvp-floral--560 { bottom: 0; right: 0; width: 37.821%; }
+/* The reply page is the one page not lifted from the Canva composition, and it
+   showed: a flat grey rectangle with a hairline lace edge, an Italiana RSVP that
+   matched no other heading, a Caveat note, and 11-13px type. It now uses the
+   source's own artwork for the display lettering — the four hand-drawn RSVP
+   letters and the handwritten note, placed at the proportions and the wobbling
+   baseline they have in the source — with the lace frame given its full width
+   and the functional copy set at readable sizes. */
+.rsvp-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0 0 3.4cqw;
+}
+.rsvp-heading__letter { display: block; height: auto; }
+.rsvp-heading__letter--r { width: 9.19cqw; }
+.rsvp-heading__letter--s { width: 9.69cqw; margin: 0 -1.2cqw 0 1.96cqw; }
+.rsvp-heading__letter--v { width: 8.99cqw; margin-bottom: 1.88cqw; }
+.rsvp-heading__letter--p { width: 12cqw; margin: 0 0 0.58cqw -2.8cqw; }
+.rsvp-heading__letter--s { margin-bottom: 1.91cqw; }
+
 .rsvp-paper {
-  position: relative; z-index: 1; width: 84%; margin: 0 auto;
-  border: 14px solid transparent;
+  position: relative; z-index: 1; width: 80%; margin: 0 auto;
+  /* The lace is the frame, not a hairline: give the border-image room to draw
+     the scallops at close to their own scale. */
+  border: 7.2cqw solid transparent;
   border-image: url('../images/optimized/rsvp-lace-frame-8f2dca09.webp') 46 round;
-  padding: 24px 16px; background: #e8e6e3 padding-box;
+  padding: 3.5cqw 4cqw 4.5cqw; background: #e8e6e3 padding-box;
   color: #24181a; font-family: 'Montserrat', Helvetica, sans-serif;
 }
-.rsvp-paper h2 { margin: 0; text-align: center; font: 44px/1.1 'Italiana', serif; letter-spacing: .1em; }
-.reply-note { margin: 12px 0; text-align: center; font: 25px/1.15 'Caveat', cursive; }
-.reply-deadline { margin: 0 0 24px; text-align: center; font-size: 11px; line-height: 1.5; }
-.rsvp-form { font-size: 13px; line-height: 1.5; }
+.reply-note { display: block; width: 76%; height: auto; margin: 0 auto 3cqw; }
+.reply-excited,
+.reply-deadline,
+.reply-signoff {
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.reply-excited { max-width: 30ch; font-size: 13px; line-height: 1.65; }
+.reply-deadline { margin: 2.6cqw 0 4.4cqw; font-size: 12.5px; line-height: 1.5; }
+.reply-signoff { margin-top: 5cqw; font-size: 12.5px; line-height: 1.9; }
+.rsvp-form { font-size: 15px; line-height: 1.5; }
 .rsvp-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
 .rsvp-form__field { margin: 0 0 10px; }
-.rsvp-form label, .rsvp-form legend { display: block; margin-bottom: 6px; font-weight: 600; }
+.rsvp-form label, .rsvp-form legend { display: block; margin-bottom: 6px; font-size: 15px; font-weight: 600; }
 .rsvp-form input[type="text"], .rsvp-form textarea { width: 100%; min-height: 44px; padding: 8px 4px; border: 0; border-bottom: 1px solid #24181a; border-radius: 0; background: transparent; color: inherit; font: 16px/1.4 'Montserrat',sans-serif; }
 .rsvp-form textarea { min-height: 72px; resize: vertical; }
 .rsvp-form .rsvp-form__options { margin-bottom: 18px; }
 .rsvp-form .rsvp-form__choice { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; font-weight: 400; }
 .rsvp-form__choice input { accent-color: #be435d; width: 17px; height: 17px; }
-.rsvp-form .button { min-height: 44px; padding: 10px 22px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 13px/1.4 'Montserrat',sans-serif; text-transform: uppercase; cursor: pointer; }
+.rsvp-form .button { min-height: 46px; padding: 11px 24px; border: 1px solid #ef91a7; background: #f6a5b6; color: #7f2638; font: 700 14px/1.4 'Montserrat',sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
 .rsvp-form .button:disabled { opacity: .65; cursor: wait; }
-.rsvp-form__status, .rsvp-form__backup { overflow-wrap: anywhere; }
+.rsvp-form__status, .rsvp-form__backup { margin: 3cqw 0 0; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
 .rsvp-form__status[data-tone="error"] { color: #a3384c; }
 .rsvp-form__status[data-tone="success"] { color: #465332; font-weight: 600; }
 .rsvp-form__guard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
