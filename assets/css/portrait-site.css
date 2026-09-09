@@ -53,13 +53,14 @@ body { overflow-x: clip; }
 .scene-0 [data-root="10"], .scene-0 [data-root="20"] { margin-top: var(--frame-extension); }
 .scene-0 .bird-2, .scene-0 .bird-5 { margin-top: calc(-1 * var(--frame-extension)); }
 .scene-0 .bird-6 { margin-top: var(--frame-extension); }
-/* The invitation card carries the only wording that really has to be read, and
-   it was the least readable thing on the site: 8.4-8.9px of white Cormorant on
-   pink, measuring about 1.5:1 against the card, where WCAG asks for 4.5:1.
-   White cannot reach that on this pink at any size, so the copy takes the
-   invitation's own deep rose, about 6:1, and the small copy grows by roughly
-   half. The source's line breaks, fonts, rotation, centring and the lace frame
-   are unchanged; only the text boxes widen, symmetrically about the centres they
+/* White on the card's pink, as the original artwork had it. This is a deliberate
+   choice of the invitation's look over legibility: it measures roughly 1.5:1
+   against the pink where WCAG asks for 4.5:1, and no size fixes that, which is
+   why this copy previously used the invitation's own deep rose at about 6:1.
+   The enlarged sizes below are kept, since they are what makes the wording
+   readable at all now that the contrast no longer helps.
+   The source's line breaks, fonts, rotation, centring and the lace frame are
+   unchanged; only the text boxes widen, symmetrically about the centres they
    already had, so the larger lines neither wrap nor cross the pink edge. */
 .card-youssef,
 .card-and-v25,
@@ -68,11 +69,18 @@ body { overflow-x: clip; }
 .card-date-v25,
 .card-church-v25,
 .card-venue-v25 {
-  color: #7f2638;
+  color: #fff;
 }
 .card-request-v25 { font-size: 3.05cqw; line-height: 1.14; }
 .card-church-v25,
 .card-venue-v25 { font-size: 2.4cqw; }
+/* The church address runs onto a second line, the district on its own, because
+   naming Zahraa El Maadi made it too long for the card: measured against the
+   pink panel there is room for about 120px of text and the single line wanted
+   162px, and no position on the card fits it. Shrinking type to suit would have
+   left this line visibly smaller than the venue line under it, so the break
+   keeps both at one size. Arabic needs the same break for the same reason. */
+.card-church-v25 { line-height: 1.25; }
 
 /* Exact source lettering is raster artwork. Only the live countdown needs a
    container-relative font rule, so desktop uses the same size as the phone. */

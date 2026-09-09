@@ -44,7 +44,11 @@
       "الخطوبة"
     ],
     "cardDate": "٠١.١٠.٢٠٢٦",
-    "cardChurch": "كنيسة الأنبا أنطونيوس، زهراء المعادي",
+    "_cardChurchNote": "Two lines. The district sits on its own line so the address stays inside the pink card.",
+    "cardChurch": [
+      "كنيسة الأنبا أنطونيوس،",
+      "زهراء المعادي"
+    ],
     "cardVenue": "قاعة ريفانا",
     "replayLabel": "شغّل فتح الظرف تاني",
     "hiddenHeading": "إنتم مدعوين!",

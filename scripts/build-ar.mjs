@@ -458,7 +458,11 @@ sub(
   copy.invitation.cardRequest.map(esc).join('<br />')
 );
 sub('card date', /(\n              class="card-date-v25"[\s\S]*?>\n              )01\.10\.2026(\n)/, `$1${esc(copy.invitation.cardDate)}$2`);
-sub('card church', /(\n              class="card-church-v25"[\s\S]*?>\n              )St\. Anthony Church, Zahraa El Maadi(\n)/, `$1${esc(copy.invitation.cardChurch)}$2`);
+sub(
+  'card church',
+  /St\. Anthony Church,<br \/>Zahraa El Maadi/,
+  copy.invitation.cardChurch.map(esc).join('<br />')
+);
 sub('card venue', /(\n              class="card-venue-v25"[\s\S]*?>\n              )Revana Wedding Venue(\n)/, `$1${esc(copy.invitation.cardVenue)}$2`);
 
 /* The source hides this live text and shows an orange raster of the same words.
