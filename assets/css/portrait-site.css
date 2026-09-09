@@ -129,12 +129,34 @@ body { overflow-x: clip; }
    embed, works without JavaScript, and is reachable by keyboard. The dotted
    rule is the only visible change, and ::before widens the touch area to about
    44px without moving it. */
+/* The tap target itself draws nothing. A dotted rule on a box sized to the line
+   read as an empty form field, and because the box was sized to the English
+   wording it hung past both ends of the shorter Arabic name. The mark is drawn by
+   the lettering instead, just below, so it is exactly as wide as the words in
+   either language and at any size. */
 .map-link {
   position: absolute;
   z-index: 900;
   display: block;
-  border-bottom: 1px dotted rgba(127, 38, 56, 0.5);
   -webkit-tap-highlight-color: rgba(190, 67, 93, 0.14);
+}
+/* A hairline in the invitation's own rose, held clear of the baseline: it says
+   there is something here without borrowing the look of an input. */
+[data-letters$="-venue"],
+[data-ar$="-venue"] .ar-row__text,
+[data-ar$="-venue"]:not(:has(.ar-row__text)) {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(190, 67, 93, 0.4);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3.5px;
+  transition: text-decoration-color 0.2s ease;
+}
+.map-link:hover + [data-letters$="-venue"],
+.scene:has(.map-link:hover) [data-letters$="-venue"],
+.scene:has(.map-link:hover) [data-ar$="-venue"] .ar-row__text,
+.scene:has(.map-link:focus-visible) [data-letters$="-venue"],
+.scene:has(.map-link:focus-visible) [data-ar$="-venue"] .ar-row__text {
+  text-decoration-color: rgba(190, 67, 93, 0.85);
 }
 .map-link::before {
   content: '';

@@ -35,18 +35,25 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
-.ar-row { gap: 1.35cqw; }
+/* Enough room that the mark reads as a separate object rather than a ligature
+   on the first word. */
+.ar-row { gap: 2.3cqw; }
 .ar-row__text { display: block; }
 
-/* The marks keep the proportions they have in the source composition: their
-   width in scene percent maps straight to cqw, and their height converts
-   through the artboard ratio (767.625 / 502.1245). */
+/* The calendar and clock marks keep the proportions they have in the source
+   composition: their width in scene percent maps straight to cqw, and their
+   height converts through the artboard ratio (767.625 / 502.1245). */
 .ar-icon { flex: none; display: block; }
 .ar-icon--calendar { width: 4.5785cqw; height: 4.5773cqw; }
 .ar-icon--clock { width: 4.1802cqw; height: 4.1798cqw; }
 /* Three raster pieces that only line up at fixed offsets, so the group is a box
-   of its own proportions with each piece placed inside it by percentage. */
-.ar-icon--church { position: relative; width: 7.3656cqw; height: 7.868cqw; }
+   of its own proportions with each piece placed inside it by percentage.
+   The source draws this mark half again as tall as the clock, which it can
+   afford on the left of the page where nothing is near it. On the right, at the
+   size it has in the artwork, it reached down into the line below and sat on the
+   florals, so it is brought closer to the clock's size. Aspect ratio is kept
+   (7.3656 / 7.868). */
+.ar-icon--church { position: relative; width: 5.2427cqw; height: 5.6cqw; }
 .ar-icon--church img { position: absolute; display: block; }
 
 /* ------------------------------------------------------- calendar grid */
@@ -68,11 +75,11 @@
   line-height: 1;
   letter-spacing: 0;
 }
-.ar-cal__day { font-size: 2cqw; font-weight: 500; }
+.ar-cal__day { font-size: 2.5cqw; font-weight: 500; }
 /* Arabic-Indic figures still run left to right inside a right-to-left line, so
    the pair is isolated to keep ١٠ from reading as ٠١. */
 .ar-cal__num {
-  font-size: 2.25cqw;
+  font-size: 2.7cqw;
   font-weight: 400;
   direction: ltr;
   unicode-bidi: isolate;
@@ -109,7 +116,7 @@
    that only stretches the space, leaving every join intact. */
 .ar-strapline text {
   font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 500;
   word-spacing: 14px;
   fill: #111;
@@ -124,7 +131,7 @@
   margin: 0;
   direction: rtl;
   font-family: 'Aref Ruqaa Arabic', serif;
-  font-size: 7.4cqw;
+  font-size: 8.2cqw;
   font-weight: 700;
   line-height: 1.16;
   text-align: center;
@@ -144,7 +151,7 @@
   width: 37.1013% !important;
   direction: rtl;
   font-family: 'Aref Ruqaa Arabic', serif !important;
-  font-size: clamp(24px, 7.1cqw, 44px) !important;
+  font-size: clamp(26px, 7.9cqw, 48px) !important;
   line-height: 1.12 !important;
   letter-spacing: 0 !important;
 }
@@ -160,10 +167,10 @@
   font-family: 'Aref Ruqaa Arabic', serif !important;
   letter-spacing: 0 !important;
 }
-.card-youssef { font-size: 3.6cqw !important; }
-.card-and-v25 { font-size: 2.6cqw !important; }
-.card-lara { font-size: 3.75cqw !important; }
-.card-date-v25 { font-size: 3.5cqw !important; }
+.card-youssef { font-size: 4cqw !important; }
+.card-and-v25 { font-size: 2.9cqw !important; }
+.card-lara { font-size: 4.15cqw !important; }
+.card-date-v25 { font-size: 3.9cqw !important; }
 
 .card-request-v25,
 .card-church-v25,
@@ -172,9 +179,9 @@
   /* Tracking breaks the joins between Arabic letters. */
   letter-spacing: 0 !important;
 }
-.card-request-v25 { font-size: 2.5cqw !important; line-height: 1.45 !important; }
+.card-request-v25 { font-size: 2.75cqw !important; line-height: 1.45 !important; }
 .card-church-v25,
-.card-venue-v25 { font-size: 2.1cqw !important; line-height: 1.25 !important; }
+.card-venue-v25 { font-size: 2.3cqw !important; line-height: 1.25 !important; }
 
 /* ------------------------------------------------------------- countdown */
 
@@ -207,13 +214,13 @@
 .rsvp-heading__word {
   width: auto;
   height: auto;
-  font-size: 11.5cqw;
+  font-size: 13cqw;
   line-height: 1.2;
 }
 p.reply-note {
   width: auto;
   margin: 0 auto 2.4cqw;
-  font-size: 7.2cqw;
+  font-size: 8.2cqw;
   line-height: 1.3;
   text-align: center;
   color: #111;
@@ -231,9 +238,9 @@ p.reply-note {
 /* The shared sheet caps this line at 32ch, which is measured on Latin figures
    and leaves the Arabic sentence breaking one word onto a line of its own. It
    takes the paper's own width instead. */
-.reply-excited { max-width: none; font-size: 13.5px; line-height: 1.7; }
-.reply-deadline { font-size: 13px; line-height: 1.6; }
-.reply-signoff { font-size: 13px; line-height: 1.8; }
+.reply-excited { max-width: none; font-size: 15px; line-height: 1.7; }
+.reply-deadline { font-size: 14px; line-height: 1.6; }
+.reply-signoff { font-size: 14px; line-height: 1.8; }
 
 .rsvp-form,
 .rsvp-form label,
@@ -247,15 +254,15 @@ p.reply-note {
    little more room to stop descenders touching the rule. */
 .rsvp-form input[type='text'],
 .rsvp-form textarea { padding-bottom: 10px; line-height: 1.6; }
-.rsvp-form .rsvp-form__choice { font-size: 13px; }
+.rsvp-form .rsvp-form__choice { font-size: 14px; }
 /* The tick box leads the label, so its spacing has to follow the text
    direction rather than sit on a fixed side. */
 .rsvp-form__choice span::before {
   margin-right: 0;
   margin-inline-end: 6px;
 }
-.reply-summary dt { font-size: 12px; }
-.reply-summary dd { font-size: 14px; }
+.reply-summary dt { font-size: 13px; }
+.reply-summary dd { font-size: 15px; }
 
 /* ------------------------------------------------------------------ misc */
 

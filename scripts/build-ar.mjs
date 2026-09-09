@@ -79,10 +79,29 @@ const lettersSpan = (key) =>
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+/* The three Google Maps destinations, read out of the source in document order
+   (ceremony, reception by boat, reception by car) rather than retyped, so the
+   query strings cannot drift apart between the two editions. */
+const MAP_HREFS = [...html.matchAll(/<a\n\s+class="map-link"\n\s+href="([^"]+)"/g)].map((m) => m[1]);
+if (MAP_HREFS.length !== 3) {
+  console.error(`  FAIL  expected 3 map links in index.html, found ${MAP_HREFS.length}`);
+  process.exit(1);
+}
+
+/* The venue rows are decorative (aria-hidden), with the wording repeated as real
+   text in each scene's hidden summary, so the tap target stays a separate anchor
+   as in the source: a focusable link inside aria-hidden content would be
+   unreachable to a screen reader yet still catch the keyboard. The rule under the
+   name is drawn by the lettering itself, which is why it now measures exactly as
+   wide as the words in either language. Only the box is resized here. */
+const mapLinkBox = (label, style) => (m) =>
+  m.replace(/style="[^"]*"/, `style="${style}"`)
+   .replace(/<span class="visually-hidden">[^<]*<\/span>/, `<span class="visually-hidden">${esc(label)}</span>`);
+
 /* ------------------------------------------------------------------ helpers */
 
 /** A centred single line of Arabic lettering. */
-function centredLine({ key, text, centerX, midY, font, boxW = 70, boxH = 5, delay, z, cls = 'ar-line' }) {
+function centredLine({ key, text, inner, centerX, midY, font, boxW = 70, boxH = 5, delay, z, cls = 'ar-line' }) {
   const left = +(centerX - boxW / 2).toFixed(4);
   const top = +(midY - boxH / 2).toFixed(4);
   return (
@@ -93,7 +112,7 @@ function centredLine({ key, text, centerX, midY, font, boxW = 70, boxH = 5, dela
     `              font-size: ${font}cqw;\n` +
     `              justify-content: center;\n` +
     `              --delay: ${delay};\n              --z: ${z};\n            "\n` +
-    `            >${esc(text)}</span\n          >`
+    `            >${inner ?? esc(text)}</span\n          >`
   );
 }
 
@@ -256,7 +275,7 @@ function calendarMarkup() {
  * `align` is 'center' (row centred on centerX) or 'right' (row's right edge at
  * rightEdge), mirroring whichever way the source row was aligned.
  */
-function iconRow({ key, text, icon, font, midY, boxH = 6, delay, z, align, centerX, rightEdge, boxW = 70 }) {
+function iconRow({ key, text, inner, icon, font, midY, boxH = 6, delay, z, align, centerX, rightEdge, boxW = 70 }) {
   const left = align === 'right'
     ? +(rightEdge - boxW).toFixed(4)
     : +(centerX - boxW / 2).toFixed(4);
@@ -270,7 +289,7 @@ function iconRow({ key, text, icon, font, midY, boxH = 6, delay, z, align, cente
     `              font-size: ${font}cqw;\n` +
     `              justify-content: ${justify};\n` +
     `              --delay: ${delay};\n              --z: ${z};\n            "\n` +
-    `            >${icon}<span class="ar-row__text">${esc(text)}</span></span\n          >`
+    `            >${icon}<span class="ar-row__text">${inner ?? esc(text)}</span></span\n          >`
   );
 }
 
@@ -370,7 +389,7 @@ sub(
   imgByRoot(12),
   scriptTitle({
     key: 'youssef', text: copy.opening.youssef,
-    centerX: 53.0102, midY: 38.1382, font: 11.4, boxW: 60, boxH: 15,
+    centerX: 53.0102, midY: 38.1382, font: 13.2, boxW: 60, boxH: 15,
     delay: '0.47s', z: 12, anim: 'hero-rise',
   })
 );
@@ -380,7 +399,7 @@ sub(
   imgByRoot(4),
   scriptTitle({
     key: 'lara', text: copy.opening.lara,
-    centerX: 52.0455, midY: 53.3314, font: 11.4, boxW: 60, boxH: 15,
+    centerX: 52.0455, midY: 53.3314, font: 13.2, boxW: 60, boxH: 15,
     delay: '0.66s', z: 4, anim: 'hero-rise',
   })
 );
@@ -392,7 +411,7 @@ sub(
   imgByRoot(7),
   scriptTitle({
     key: 'connector', text: copy.opening.connector,
-    centerX: 53.5770, midY: 45.1040, font: 7.6, boxW: 20, boxH: 7,
+    centerX: 53.5770, midY: 45.1040, font: 8.6, boxW: 20, boxH: 7,
     delay: '0.58s', z: 7, anim: 'hero-pop', extra: '              color: #ee9fac;\n',
   })
 );
@@ -461,7 +480,7 @@ sub(
   /<img[^>]*\bdata-title="date"[^>]*\/>/,
   scriptTitle({
     key: 'date-title', text: copy.date.title,
-    centerX: 49.7847, midY: 22.7532, font: 10.6, boxW: 70, boxH: 15,
+    centerX: 49.7847, midY: 22.7532, font: 13.0, boxW: 70, boxH: 15,
     delay: '0.47s', z: 208,
   })
 );
@@ -471,7 +490,7 @@ sub(
   lettersSpan('calendar-heading'),
   centredLine({
     key: 'calendar-heading', text: copy.date.calendarHeading,
-    centerX: 50.6195, midY: 31.4100, font: 3.5, boxW: 60, boxH: 4.2,
+    centerX: 50.6195, midY: 31.4100, font: 4.15, boxW: 60, boxH: 4.2,
     delay: '0.435s', z: 207,
   })
 );
@@ -484,7 +503,7 @@ sub(
   lettersSpan('date'),
   iconRow({
     key: 'date-line', text: copy.date.dateLine, icon: CALENDAR_ICON,
-    font: 3.5, midY: 60.9500, boxH: 5.4, delay: '0.61s', z: 199,
+    font: 4.15, midY: 60.9500, boxH: 6.0, delay: '0.61s', z: 199,
     align: 'center', centerX: 47.5634, boxW: 60,
   })
 );
@@ -516,7 +535,7 @@ sub(
   /<img[^>]*\bdata-title="ceremony"[^>]*\/>/,
   scriptTitle({
     key: 'ceremony-title', text: copy.ceremony.title,
-    centerX: 52.7471, midY: 24.1063, font: 9.6, boxW: 70, boxH: 13,
+    centerX: 52.7471, midY: 24.1063, font: 12.6, boxW: 70, boxH: 13,
     delay: '0.26s', z: 263,
   })
 );
@@ -528,8 +547,8 @@ sub(
   lettersSpan('ceremony-venue'),
   iconRow({
     key: 'ceremony-venue', text: copy.ceremony.venue, icon: CHURCH_ICON,
-    font: 3.3, midY: 68.0528, boxH: 8.2, delay: '0.575s', z: 257,
-    align: 'right', rightEdge: 84.4, boxW: 66,
+    font: 3.9, midY: 68.0528, boxH: 6.6, delay: '0.575s', z: 257,
+    align: 'right', rightEdge: 80.5, boxW: 66,
   })
 );
 sub(
@@ -537,8 +556,8 @@ sub(
   lettersSpan('ceremony-hour'),
   iconRow({
     key: 'ceremony-time', text: copy.ceremony.time, icon: CLOCK_ICON,
-    font: 3.3, midY: 72.0282, boxH: 5.4, delay: '0.085s', z: 215,
-    align: 'right', rightEdge: 84.4, boxW: 66,
+    font: 3.9, midY: 72.0282, boxH: 5.6, delay: '0.085s', z: 215,
+    align: 'right', rightEdge: 80.5, boxW: 66,
   })
 );
 sub('ceremony meridiem removed', new RegExp(`\\s*${lettersSpan('ceremony-meridiem').source}`), '');
@@ -551,11 +570,15 @@ sub('church piece 272 removed', new RegExp(`\\s*${imgByRoot(272).source}`), '');
 sub('church piece 273 removed', new RegExp(`\\s*${imgByRoot(273).source}`), '');
 
 sub('ceremony map title', /title="Ceremony church — Google Map"/, `title="${esc(copy.ceremony.mapTitle)}"`);
+/* The Arabic names are shorter than the English ones, so each tap target is
+   pulled in to sit over the words it belongs to instead of trailing past them. */
 sub(
   'ceremony map link',
   /<span class="visually-hidden">Open St\. Anthony Church, Maadi in Google Maps<\/span>/,
   `<span class="visually-hidden">${esc(copy.ceremony.mapLink)}</span>`
 );
+sub('ceremony map link box', /style="left: 31%; top: 67%; width: 50%; height: 2\.1%"/,
+  'style="left: 26.9%; top: 66.6%; width: 53.6%; height: 2.6%"');
 sub(
   'ceremony hidden copy',
   /<h2>Ceremony<\/h2>\n            <p>St\. Anthony Church, Maadi\. 7 PM, Main Church\.<\/p>/,
@@ -579,7 +602,7 @@ for (const [scene, deck, roots] of [
     new RegExp(`<img[^>]*\\bdata-title="${scene}"[^>]*/>`),
     scriptTitle({
       key: `${p}-title`, text: deck.title,
-      centerX: 49.4440, midY: boat ? 9.3967 : 14.3764, font: 10.6, boxW: 70, boxH: 15,
+      centerX: 49.4440, midY: boat ? 9.3967 : 14.3764, font: 11.8, boxW: 70, boxH: 15,
       delay: boat ? '0.33s' : '0.575s', z: roots.title, anim: 'from-top',
     })
   );
@@ -589,7 +612,7 @@ for (const [scene, deck, roots] of [
     lettersSpan(`${p}-venue`),
     centredLine({
       key: `${p}-venue`, text: deck.venue,
-      centerX: 50.0590, midY: boat ? 17.5560 : 22.5357, font: 3.3, boxW: 60, boxH: 4.2,
+      centerX: 50.0590, midY: boat ? 17.5560 : 22.5357, font: 3.9, boxW: 60, boxH: 4.8,
       delay: boat ? '0.645s' : '0.575s', z: roots.venueZ,
     })
   );
@@ -607,7 +630,7 @@ for (const [scene, deck, roots] of [
     lettersSpan(`${p}-directions-1`),
     centredLine({
       key: `${p}-directions-1`, text: deck.directions[0],
-      centerX: 50.2898, midY: +twoLineMidY[0].toFixed(4), font: 3.3, boxW: 80, boxH: 4.2,
+      centerX: 50.2898, midY: +twoLineMidY[0].toFixed(4), font: 3.9, boxW: 80, boxH: 4.8,
       delay: boat ? '0.085s' : '0.12s', z: roots.d1,
     })
   );
@@ -616,7 +639,7 @@ for (const [scene, deck, roots] of [
     lettersSpan(`${p}-directions-2`),
     centredLine({
       key: `${p}-directions-2`, text: deck.directions[1],
-      centerX: 49.6430, midY: +twoLineMidY[1].toFixed(4), font: 3.3, boxW: 80, boxH: 4.2,
+      centerX: 49.6430, midY: +twoLineMidY[1].toFixed(4), font: 3.9, boxW: 80, boxH: 4.8,
       delay: boat ? '0.365s' : '0.4s', z: roots.d2,
     })
   );
@@ -632,11 +655,16 @@ sub(
   /<span class="visually-hidden">Open the boat arrival point for Revana Wedding Venue in Google Maps<\/span>/,
   `<span class="visually-hidden">${esc(copy.receptionBoat.mapLink)}</span>`
 );
+sub('boat map link box', /style="left: 28%; top: 16\.5%; width: 44\.5%; height: 2\.1%"/,
+  'style="left: 41.2%; top: 16.1%; width: 17.8%; height: 2.6%"');
 sub(
   'car map link',
   /<span class="visually-hidden">Open the car route to Revana Wedding Venue in Google Maps<\/span>/,
   `<span class="visually-hidden">${esc(copy.receptionCar.mapLink)}</span>`
 );
+sub('car map link box', /style="left: 28%; top: 21\.5%; width: 44\.5%; height: 2\.1%"/,
+  'style="left: 41.2%; top: 21.1%; width: 17.8%; height: 2.6%"');
+
 sub(
   'boat hidden copy',
   /<h2>Reception by boat<\/h2>\n            <p>\n              Revana Wedding Venue\. Kindly follow this location if you wish to\n              arrive at the venue by boat\.\n            <\/p>/,
@@ -659,7 +687,7 @@ sub(
   /<img[^>]*\bdata-title="code"[^>]*\/>/,
   scriptTitle({
     key: 'dress-title-1', text: copy.dressCode.titleFirst,
-    centerX: 59.82, midY: 13.2253, font: 9.6, boxW: 34, boxH: 12,
+    centerX: 61.71, midY: 13.2253, font: 11.4, boxW: 34, boxH: 12,
     delay: '0.295s', z: 554, anim: 'from-top',
   })
 );
@@ -668,7 +696,7 @@ sub(
   /<img[^>]*\bdata-title="dress"[^>]*\/>/,
   scriptTitle({
     key: 'dress-title-2', text: copy.dressCode.titleSecond,
-    centerX: 39.89, midY: 13.6781, font: 9.6, boxW: 44, boxH: 12,
+    centerX: 38.46, midY: 13.6781, font: 11.4, boxW: 44, boxH: 12,
     delay: '0.12s', z: 548, anim: 'from-top',
   })
 );
@@ -678,7 +706,7 @@ sub(
   lettersSpan('dress-ladies'),
   centredLine({
     key: 'dress-ladies', text: copy.dressCode.ladies,
-    centerX: 50.2171, midY: 21.1024, font: 3.3, boxW: 60, boxH: 4.2,
+    centerX: 50.2171, midY: 21.1024, font: 3.9, boxW: 60, boxH: 4.8,
     delay: '0.225s', z: 540,
   })
 );
@@ -687,7 +715,7 @@ sub(
   lettersSpan('dress-men'),
   centredLine({
     key: 'dress-men', text: copy.dressCode.men,
-    centerX: 50.0109, midY: 67.7521, font: 3.3, boxW: 60, boxH: 4.2,
+    centerX: 50.0109, midY: 67.7521, font: 3.9, boxW: 60, boxH: 4.8,
     delay: '0.54s', z: 547,
   })
 );
