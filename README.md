@@ -51,10 +51,29 @@ The custom bilingual form posts to a small Cloudflare Worker at `worker/`. The W
 
 The English route uses the original 502.1245:767.625 Canva page ratio at every viewport size,
 centered and capped at 430 CSS pixels on larger screens. Each page retains the
-original v25 lettering, artwork, and floral framing. The final RSVP page displays the existing form directly in a lace-paper card,
-with the original floral corners. This page grows to fit the form; the other
-eight pages retain the source aspect ratio.
+original v25 lettering, artwork, and floral framing, rests on the paper colour
+with a small gap and a soft shadow, and snaps its own top to the top of the
+viewport as the reader scrolls. The final RSVP page displays the existing form
+directly in a lace-paper card, under the source's own hand-drawn RSVP lettering
+and handwritten note, with the original floral corners. This page grows to fit the
+form; the other eight pages retain the source aspect ratio.
 The Arabic route continues to use its existing styles and scripts.
+
+Guest-facing details worth knowing when editing:
+
+- Every venue line is an anchor onto Google Maps, so directions work without
+  JavaScript and without the embed.
+- The three map embeds keep their address in `data-src` until their page comes
+  into view, which keeps about 1.3 MB of Google's scripts off the first screen.
+- The invitation card's wording uses the invitation's deep rose rather than white,
+  which is the only way it reaches a readable contrast on that pink.
+- A successful reply reveals the event summary and `assets/engagement.ics`. The
+  four-hour duration in that file is an assumption.
+- `python3 scripts/build-social-assets.py` composes the link-preview card and the
+  icons from the opening artwork, using the manifest's own coordinates.
+- `node scripts/subset-fonts.mjs` writes `assets/css/fonts-portrait.css` with only
+  the families this route names; `assets/css/fonts.css` stays as the full cache
+  for the Arabic route.
 
 The invitation collage bakes each layer's tilt into its PNG, so swapping a
 photograph means rebuilding that file at the same canvas size and tilted
