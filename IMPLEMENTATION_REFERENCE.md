@@ -35,9 +35,12 @@ Build a simple, modular, easily editable engagement invitation website that:
 - The current local folder was not a Git repository at the time of the audit.
 - English URL: `https://youssef-lara.github.io/engagement/`.
 - Arabic URL: `https://youssef-lara.github.io/engagement/ar/`.
-- Previously `https://youssefg7.github.io/engagement/`; the calendar UIDs still carry that
-  host on purpose, because a UID identifies an event rather than locating it and changing
-  one would duplicate the entry for guests who already added the invitation.
+- Previously `https://youssefg7.github.io/engagement/`, which stopped resolving once the
+  repository moved: GitHub redirects repository links after a transfer but not Pages
+  hosts. Nothing had been sent to guests at that point, so no invitation broke.
+- The calendar UIDs moved to the new host at the same time and are frozen from here on.
+  A UID identifies an event rather than locating it, and it is all a calendar matches on,
+  so changing one later hands guests a duplicate entry instead of an update.
 - Deployment source: a GitHub Actions workflow triggered by every push to `main`.
 - GitHub Pages must use GitHub Actions as its publishing source.
 
